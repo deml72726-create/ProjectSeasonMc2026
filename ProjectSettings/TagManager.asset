@@ -42,6 +42,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: bg
+    uniqueID: 2510021573
+    locked: 0
+  - name: floor
+    uniqueID: 2054240893
+    locked: 0
+  - name: puzzles
+    uniqueID: 3867302957
+    locked: 0
+  - name: player
+    uniqueID: 733854493
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

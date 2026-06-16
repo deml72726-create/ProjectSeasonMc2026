@@ -423,9 +423,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9faa47e28743d478ebba3f92c1a6af2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  playerRb: {fileID: 0}
+  playerRb: {fileID: 1016124301}
   speed: 0
   input: 0
+  spriteRenderer: {fileID: 1272904429}
 --- !u!1 &1061140490
 GameObject:
   m_ObjectHideFlags: 0
