@@ -1,21 +1,46 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class shinyinteractableo : MonoBehaviour
 {
+    public enum ObjectType { Sprite, UI }
+    public ObjectType type;
+
     public SpriteRenderer spriteRenderer;
+    public Image uiImage;
     public Material outlineMaterial;
-    private Material defaultMaterial;
     public string interactionText = "This is a dusty shelf.";
+
+    private Material defaultMaterial;
+    private RectTransform rectTransform;
     private bool isHovered = false;
 
     void Start()
     {
-        if (spriteRenderer == null)
+        if (type == ObjectType.Sprite)
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer == null)
+            {
+                spriteRenderer = GetComponent<SpriteRenderer>();
+            }
+            if (spriteRenderer != null)
+            {
+                defaultMaterial = spriteRenderer.material;
+            }
         }
-        defaultMaterial = spriteRenderer.material;
+        else if (type == ObjectType.UI)
+        {
+            if (uiImage == null)
+            {
+                uiImage = GetComponent<Image>();
+            }
+            if (uiImage != null)
+            {
+                defaultMaterial = uiImage.material;
+            }
+            rectTransform = GetComponent<RectTransform>();
+        }
     }
 
     void Update()
@@ -23,11 +48,26 @@ public class shinyinteractableo : MonoBehaviour
         if (Mouse.current == null) return;
 
         Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-        
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        bool currentlyHovered = false;
 
-        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        if (type == ObjectType.Sprite)
+        {
+            Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+            RaycastHit2D hit = Physics2D.Raycast(mouseWorldPosition, Vector2.zero);
+            if (hit.collider != null && hit.collider.gameObject == gameObject)
+            {
+                currentlyHovered = true;
+            }
+        }
+        else if (type == ObjectType.UI && rectTransform != null)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, mouseScreenPosition, null))
+            {
+                currentlyHovered = true;
+            }
+        }
+
+        if (currentlyHovered)
         {
             if (!isHovered)
             {
@@ -52,17 +92,27 @@ public class shinyinteractableo : MonoBehaviour
 
     void OnHoverEnter()
     {
-        if (spriteRenderer != null && outlineMaterial != null)
+        if (outlineMaterial == null) return;
+
+        if (type == ObjectType.Sprite && spriteRenderer != null)
         {
             spriteRenderer.material = outlineMaterial;
+        }
+        else if (type == ObjectType.UI && uiImage != null)
+        {
+            uiImage.material = outlineMaterial;
         }
     }
 
     void OnHoverExit()
     {
-        if (spriteRenderer != null)
+        if (type == ObjectType.Sprite && spriteRenderer != null)
         {
             spriteRenderer.material = defaultMaterial;
+        }
+        else if (type == ObjectType.UI && uiImage != null)
+        {
+            uiImage.material = defaultMaterial;
         }
     }
 

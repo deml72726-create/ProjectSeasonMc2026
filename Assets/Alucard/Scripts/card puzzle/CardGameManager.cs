@@ -8,17 +8,220 @@ public class UICardGameManager : MonoBehaviour
     public Transform rewardSpawnPoint;
     public GameObject missingCardButton;
     public GameObject cardGameCanvas;
+    public CanvasGroup anxietyVignette;
+    public int currentRound = 1;
+
+    public UICard[] allCards;
+    public Transform shuffleCenterPoint;
+    public float dealSpeed = 8.0f;
+    private Vector3[] targetPositions;
+
+    public AudioSource sfxSource;
+    public AudioSource ambientSource;
+    public AudioSource starFaceSource;
+    
+    public AudioClip sfxShuffle;
+    public AudioClip sfxGroupBack;
+    public AudioClip sfxPutDown;
+    public AudioClip sfxSelect;
+    public AudioClip sfxWrong;
+    public AudioClip sfxRight;
+    public AudioClip sfxStarFace;
+    public AudioClip sfxFlipBackGroup;
+    public AudioClip ambientGothic;
+
     private UICard firstCard;
     private UICard secondCard;
-    private bool canFlip = true;
+    private bool canFlip = false;
     private int matchesFound = 0;
-    private int totalPairsNeeded = 6;
+    private int totalPairsNeeded;
+    private Coroutine fadeCoroutine;
+    private int correctStreak = 0;
+    private float wrongPlayProbability = 0.7f;
+
+    void Start()
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.playOnAwake = false;
+            sfxSource.Stop();
+        }
+        if (ambientSource != null)
+        {
+            ambientSource.playOnAwake = false;
+            ambientSource.Stop();
+        }
+        if (starFaceSource != null)
+        {
+            starFaceSource.playOnAwake = false;
+            starFaceSource.Stop();
+        }
+
+        if (allCards == null || allCards.Length == 0)
+        {
+            Debug.LogError("All Cards array is empty in the Inspector");
+            return;
+        }
+
+        if (shuffleCenterPoint == null)
+        {
+            Debug.LogError("Shuffle Center Point is not assigned in the Inspector");
+            return;
+        }
+
+        SaveCardTargetPositions();
+        StartRound();
+    }
+
+    void SaveCardTargetPositions()
+    {
+        targetPositions = new Vector3[allCards.Length];
+        for (int i = 0; i < allCards.Length; i++)
+        {
+            if (allCards[i] != null)
+            {
+                targetPositions[i] = allCards[i].GetComponent<RectTransform>().localPosition;
+            }
+        }
+    }
+
+    void ShuffleTargetPositions()
+    {
+        for (int i = targetPositions.Length - 1; i > 0; i--)
+        {
+            int r = Random.Range(0, i + 1);
+            Vector3 temp = targetPositions[i];
+            targetPositions[i] = targetPositions[r];
+            targetPositions[r] = temp;
+        }
+    }
+
+    public void StartRound()
+    {
+        matchesFound = 0;
+        firstCard = null;
+        secondCard = null;
+
+        int activeCardsCount = 0;
+        if (currentRound == 1)
+        {
+            activeCardsCount = 4;
+        }
+        else if (currentRound == 2)
+        {
+            activeCardsCount = 8;
+        }
+        else if (currentRound == 3)
+        {
+            activeCardsCount = 10;
+        }
+        else if (currentRound == 4)
+        {
+            activeCardsCount = 10;
+        }
+
+        totalPairsNeeded = activeCardsCount / 2;
+
+        UpdateAnxietyVignette();
+        ShuffleTargetPositions();
+
+        for (int i = 0; i < allCards.Length; i++)
+        {
+            if (allCards[i] != null)
+            {
+                if (i < activeCardsCount)
+                {
+                    allCards[i].gameObject.SetActive(true);
+                    allCards[i].SetAlpha(1.0f);
+                    Button btn = allCards[i].GetComponent<Button>();
+                    if (btn != null)
+                    {
+                        btn.enabled = true;
+                    }
+
+                    allCards[i].isScribbled = (currentRound == 4 && i < 8);
+                    allCards[i].SetFlipped(false);
+                }
+                else
+                {
+                    allCards[i].gameObject.SetActive(false);
+                }
+            }
+        }
+
+        StartCoroutine(ShuffleAndDealSequence(activeCardsCount));
+    }
+
+    public IEnumerator ShuffleAndDealSequence(int activeCount)
+    {
+        canFlip = false;
+
+        for (int i = 0; i < activeCount; i++)
+        {
+            if (allCards[i] != null && shuffleCenterPoint != null)
+            {
+                allCards[i].GetComponent<RectTransform>().localPosition = shuffleCenterPoint.localPosition;
+                allCards[i].GetComponent<RectTransform>().localRotation = Quaternion.identity;
+                allCards[i].SetFlipped(false);
+            }
+        }
+
+        if (sfxSource != null && sfxShuffle != null)
+        {
+            sfxSource.PlayOneShot(sfxShuffle);
+        }
+
+        yield return new WaitForSeconds(0.6f);
+
+        for (int i = 0; i < activeCount; i++)
+        {
+            if (allCards[i] != null)
+            {
+                Vector3 randomOffset = new Vector3(Random.Range(-15.0f, 15.0f), Random.Range(-15.0f, 15.0f), 0);
+                float randomRotation = Random.Range(-15.0f, 15.0f);
+
+                StartCoroutine(MoveCardToPosition(allCards[i].GetComponent<RectTransform>(), targetPositions[i] + randomOffset, randomRotation));
+                
+                if (sfxSource != null && sfxPutDown != null)
+                {
+                    sfxSource.PlayOneShot(sfxPutDown);
+                }
+
+                yield return new WaitForSeconds(0.12f);
+            }
+        }
+
+        yield return new WaitForSeconds(0.6f);
+        canFlip = true;
+    }
+
+    IEnumerator MoveCardToPosition(RectTransform cardTransform, Vector3 destination, float rotationZ)
+    {
+        Quaternion targetRotation = Quaternion.Euler(0, 0, rotationZ);
+
+        while (Vector3.Distance(cardTransform.localPosition, destination) > 1.0f)
+        {
+            cardTransform.localPosition = Vector3.Lerp(cardTransform.localPosition, destination, Time.deltaTime * dealSpeed);
+            cardTransform.localRotation = Quaternion.Lerp(cardTransform.localRotation, targetRotation, Time.deltaTime * dealSpeed);
+            yield return null;
+        }
+
+        cardTransform.localPosition = destination;
+        cardTransform.localRotation = targetRotation;
+    }
 
     public void OpenCardGame()
     {
         if (cardGameCanvas != null)
         {
             cardGameCanvas.SetActive(true);
+        }
+
+        if (ambientSource != null && ambientGothic != null)
+        {
+            ambientSource.clip = ambientGothic;
+            ambientSource.loop = true;
+            ambientSource.Play();
         }
     }
 
@@ -27,6 +230,16 @@ public class UICardGameManager : MonoBehaviour
         if (cardGameCanvas != null)
         {
             cardGameCanvas.SetActive(false);
+        }
+
+        if (ambientSource != null)
+        {
+            ambientSource.Stop();
+        }
+
+        if (starFaceSource != null)
+        {
+            starFaceSource.Stop();
         }
     }
 
@@ -39,6 +252,19 @@ public class UICardGameManager : MonoBehaviour
     IEnumerator FlipCardSequence(UICard card)
     {
         card.SetFlipped(true);
+
+        if (sfxSource != null && sfxSelect != null)
+        {
+            sfxSource.PlayOneShot(sfxSelect);
+        }
+
+        if (card.isScribbled && starFaceSource != null && sfxStarFace != null)
+        {
+            starFaceSource.pitch = Random.Range(0.8f, 1.2f);
+            starFaceSource.clip = sfxStarFace;
+            starFaceSource.loop = true;
+            starFaceSource.Play();
+        }
 
         if (firstCard == null)
         {
@@ -58,30 +284,153 @@ public class UICardGameManager : MonoBehaviour
 
                 if (firstButton != null)
                 {
-                    firstButton.interactable = false;
+                    firstButton.enabled = false;
                 }
                 if (secondButton != null)
                 {
-                    secondButton.interactable = false;
+                    secondButton.enabled = false;
                 }
 
+                firstCard.isScribbled = false;
+                secondCard.isScribbled = false;
+                firstCard.SetFlipped(true);
+                secondCard.SetFlipped(true);
+
+                if (starFaceSource != null && starFaceSource.isPlaying)
+                {
+                    starFaceSource.Stop();
+                }
+
+                if (sfxSource != null && sfxRight != null)
+                {
+                    float volumeFactor = Mathf.Max(0.3f, Mathf.Pow(0.85f, correctStreak));
+                    sfxSource.PlayOneShot(sfxRight, volumeFactor);
+                }
+
+                correctStreak++;
                 matchesFound++;
 
                 if (matchesFound >= totalPairsNeeded)
                 {
-                    WinGame();
+                    StartCoroutine(RoundTransitionSequence());
                 }
             }
             else
             {
                 firstCard.SetFlipped(false);
                 secondCard.SetFlipped(false);
+
+                if (starFaceSource != null && starFaceSource.isPlaying)
+                {
+                    starFaceSource.Stop();
+                }
+
+                correctStreak = 0;
+
+                if (Random.value < wrongPlayProbability && sfxSource != null && sfxWrong != null)
+                {
+                    sfxSource.PlayOneShot(sfxWrong);
+                }
             }
 
             firstCard = null;
             secondCard = null;
             canFlip = true;
         }
+    }
+
+    IEnumerator RoundTransitionSequence()
+    {
+        canFlip = false;
+        yield return new WaitForSeconds(0.6f);
+
+        if (starFaceSource != null && starFaceSource.isPlaying)
+        {
+            starFaceSource.Stop();
+        }
+
+        for (int i = 0; i < allCards.Length; i++)
+        {
+            if (allCards[i] != null && allCards[i].gameObject.activeSelf)
+            {
+                allCards[i].SetFlipped(false);
+
+                if (sfxSource != null && sfxFlipBackGroup != null)
+                {
+                    sfxSource.PlayOneShot(sfxFlipBackGroup);
+                }
+
+                yield return new WaitForSeconds(0.12f);
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (sfxSource != null && sfxGroupBack != null)
+        {
+            sfxSource.PlayOneShot(sfxGroupBack);
+        }
+
+        float time = 0;
+        float duration = 0.8f;
+        Vector3 centerPos = shuffleCenterPoint.localPosition;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float progress = time / duration;
+
+            for (int i = 0; i < allCards.Length; i++)
+            {
+                if (allCards[i] != null && allCards[i].gameObject.activeSelf)
+                {
+                    RectTransform rect = allCards[i].GetComponent<RectTransform>();
+                    rect.localPosition = Vector3.Lerp(rect.localPosition, centerPos, progress);
+                    rect.localRotation = Quaternion.Lerp(rect.localRotation, Quaternion.identity, progress);
+                }
+            }
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.3f);
+
+        currentRound++;
+        if (currentRound <= 4)
+        {
+            StartRound();
+        }
+        else
+        {
+            WinGame();
+        }
+    }
+
+    public void UpdateAnxietyVignette()
+    {
+        if (anxietyVignette != null)
+        {
+            float targetAlpha = (float)currentRound / 4.0f;
+            if (fadeCoroutine != null)
+            {
+                StopCoroutine(fadeCoroutine);
+            }
+            fadeCoroutine = StartCoroutine(FadeVignetteSequence(targetAlpha));
+        }
+    }
+
+    IEnumerator FadeVignetteSequence(float targetAlpha)
+    {
+        float startAlpha = anxietyVignette.alpha;
+        float time = 0;
+        float duration = 1.5f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            anxietyVignette.alpha = Mathf.Lerp(startAlpha, targetAlpha, time / duration);
+            yield return null;
+        }
+        anxietyVignette.alpha = targetAlpha;
     }
 
     void WinGame()
