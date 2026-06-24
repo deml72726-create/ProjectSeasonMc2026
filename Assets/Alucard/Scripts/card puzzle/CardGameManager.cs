@@ -39,7 +39,7 @@ public class UICardGameManager : MonoBehaviour
     private int correctStreak = 0;
     private float wrongPlayProbability = 0.7f;
 
-    void Start()
+    void Awake()
     {
         if (sfxSource != null)
         {
@@ -56,7 +56,10 @@ public class UICardGameManager : MonoBehaviour
             starFaceSource.playOnAwake = false;
             starFaceSource.Stop();
         }
+    }
 
+    void Start()
+    {
         if (allCards == null || allCards.Length == 0)
         {
             Debug.LogError("All Cards array is empty in the Inspector");
@@ -125,6 +128,23 @@ public class UICardGameManager : MonoBehaviour
         UpdateAnxietyVignette();
         ShuffleTargetPositions();
 
+        System.Collections.Generic.List<int> availableIndices = new System.Collections.Generic.List<int>();
+        for (int i = 0; i < activeCardsCount; i++)
+        {
+            availableIndices.Add(i);
+        }
+
+        System.Collections.Generic.List<int> scribbledIndices = new System.Collections.Generic.List<int>();
+        if (currentRound == 4)
+        {
+            for (int k = 0; k < 3; k++)
+            {
+                int rIndex = Random.Range(0, availableIndices.Count);
+                scribbledIndices.Add(availableIndices[rIndex]);
+                availableIndices.RemoveAt(rIndex);
+            }
+        }
+
         for (int i = 0; i < allCards.Length; i++)
         {
             if (allCards[i] != null)
@@ -139,7 +159,7 @@ public class UICardGameManager : MonoBehaviour
                         btn.enabled = true;
                     }
 
-                    allCards[i].isScribbled = (currentRound == 4 && i < 8);
+                    allCards[i].isScribbled = scribbledIndices.Contains(i);
                     allCards[i].SetFlipped(false);
                 }
                 else
@@ -149,10 +169,10 @@ public class UICardGameManager : MonoBehaviour
             }
         }
 
-        StartCoroutine(ShuffleAndDealSequence(activeCardsCount));
+        StartCoroutine(RoundStartSequence(activeCardsCount));
     }
 
-    public IEnumerator ShuffleAndDealSequence(int activeCount)
+    public IEnumerator RoundStartSequence(int activeCount)
     {
         canFlip = false;
 
@@ -192,7 +212,89 @@ public class UICardGameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.6f);
+
+        for (int i = 0; i < activeCount; i++)
+        {
+            if (allCards[i] != null)
+            {
+                allCards[i].SetFlipped(true);
+            }
+        }
+
+        yield return new WaitForSeconds(2.0f);
+
+        for (int i = 0; i < activeCount; i++)
+        {
+            if (allCards[i] != null && allCards[i].GetFlipped())
+            {
+                allCards[i].SetFlipped(false);
+
+                if (sfxSource != null && sfxFlipBackGroup != null)
+                {
+                    sfxSource.PlayOneShot(sfxFlipBackGroup);
+                }
+
+                yield return new WaitForSeconds(0.12f);
+            }
+        }
+
+        if (currentRound == 4)
+        {
+            yield return StartCoroutine(ShellGameSequence(activeCount));
+        }
+
         canFlip = true;
+    }
+
+    IEnumerator ShellGameSequence(int activeCount)
+    {
+        int totalSwaps = 4;
+        for (int s = 0; s < totalSwaps; s++)
+        {
+            int idx1 = Random.Range(0, activeCount);
+            int idx2 = Random.Range(0, activeCount);
+            while (idx1 == idx2)
+            {
+                idx2 = Random.Range(0, activeCount);
+            }
+
+            yield return StartCoroutine(SwapTwoCards(allCards[idx1], allCards[idx2]));
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    IEnumerator SwapTwoCards(UICard card1, UICard card2)
+    {
+        RectTransform rect1 = card1.GetComponent<RectTransform>();
+        RectTransform rect2 = card2.GetComponent<RectTransform>();
+        Vector3 pos1 = rect1.localPosition;
+        Vector3 pos2 = rect2.localPosition;
+
+        float time = 0;
+        float duration = 0.4f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float progress = time / duration;
+            rect1.localPosition = Vector3.Lerp(pos1, pos2, progress);
+            rect2.localPosition = Vector3.Lerp(pos2, pos1, progress);
+            yield return null;
+        }
+
+        rect1.localPosition = pos2;
+        rect2.localPosition = pos1;
+
+        int index1 = System.Array.IndexOf(allCards, card1);
+        int index2 = System.Array.IndexOf(allCards, card2);
+        Vector3 tempPos = targetPositions[index1];
+        targetPositions[index1] = targetPositions[blockIndex(index2)];
+        targetPositions[index2] = tempPos;
+    }
+
+    int blockIndex(int idx)
+    {
+        return idx;
     }
 
     IEnumerator MoveCardToPosition(RectTransform cardTransform, Vector3 destination, float rotationZ)
@@ -251,6 +353,14 @@ public class UICardGameManager : MonoBehaviour
 
     IEnumerator FlipCardSequence(UICard card)
     {
+        if (currentRound == 4 && !card.isScribbled)
+        {
+            if (Random.value < 0.4f)
+            {
+                card.isScribbled = true;
+            }
+        }
+
         card.SetFlipped(true);
 
         if (sfxSource != null && sfxSelect != null)
@@ -317,9 +427,6 @@ public class UICardGameManager : MonoBehaviour
             }
             else
             {
-                firstCard.SetFlipped(false);
-                secondCard.SetFlipped(false);
-
                 if (starFaceSource != null && starFaceSource.isPlaying)
                 {
                     starFaceSource.Stop();
@@ -331,12 +438,66 @@ public class UICardGameManager : MonoBehaviour
                 {
                     sfxSource.PlayOneShot(sfxWrong);
                 }
+
+                StartCoroutine(RestartRoundSequence());
             }
 
             firstCard = null;
             secondCard = null;
             canFlip = true;
         }
+    }
+
+    IEnumerator RestartRoundSequence()
+    {
+        canFlip = false;
+        yield return new WaitForSeconds(0.6f);
+
+        for (int i = 0; i < allCards.Length; i++)
+        {
+            if (allCards[i] != null && allCards[i].gameObject.activeSelf && allCards[i].GetFlipped())
+            {
+                allCards[i].SetFlipped(false);
+
+                if (sfxSource != null && sfxFlipBackGroup != null)
+                {
+                    sfxSource.PlayOneShot(sfxFlipBackGroup);
+                }
+
+                yield return new WaitForSeconds(0.12f);
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        if (sfxSource != null && sfxGroupBack != null)
+        {
+            sfxSource.PlayOneShot(sfxGroupBack);
+        }
+
+        float time = 0;
+        float duration = 0.8f;
+        Vector3 centerPos = shuffleCenterPoint.localPosition;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float progress = time / duration;
+
+            for (int i = 0; i < allCards.Length; i++)
+            {
+                if (allCards[i] != null && allCards[i].gameObject.activeSelf)
+                {
+                    RectTransform rect = allCards[i].GetComponent<RectTransform>();
+                    rect.localPosition = Vector3.Lerp(rect.localPosition, centerPos, progress);
+                    rect.localRotation = Quaternion.Lerp(rect.localRotation, Quaternion.identity, progress);
+                }
+            }
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.3f);
+        StartRound();
     }
 
     IEnumerator RoundTransitionSequence()
@@ -351,7 +512,7 @@ public class UICardGameManager : MonoBehaviour
 
         for (int i = 0; i < allCards.Length; i++)
         {
-            if (allCards[i] != null && allCards[i].gameObject.activeSelf)
+            if (allCards[i] != null && allCards[i].gameObject.activeSelf && allCards[i].GetFlipped())
             {
                 allCards[i].SetFlipped(false);
 
