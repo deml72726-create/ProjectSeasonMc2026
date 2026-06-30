@@ -1,12 +1,26 @@
 using UnityEngine;
 
-public class WindowInteractable : MonoBehaviour
+public class BirdInteractableInteractions : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [Tooltip("The tag assigned to your player GameObject (usually 'Player')")]
     public string playerTag = "Player";
     public bool isInteractable = true; // Set to false if you want to disable interaction
     private bool playerIsClose = false;
+    private Animator myAnimator;
+
+    //----MELODIES---
+    public GameObject BirdMelody1;
+    public GameObject BirdMelody2;
+    public GameObject BirdMelody3;
+    public GameObject BirdMelody4;
+
+
+    void Start()
+    {
+        // Get the Animator component attached to this GameObject
+        myAnimator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -19,10 +33,10 @@ public class WindowInteractable : MonoBehaviour
 
     private void Interact()
     {
-        Debug.Log("Window interacted with!");
+        Debug.Log("Bird interacted with!");
         
         // Fire your GameManager instance event
-        GameManagerSheep.Instance.OnWindowClicked();
+        GameManagerBird.Instance.OnBirdClicked();
     }
 
     // Automatically detects when the player walks into the interaction zone
@@ -46,5 +60,10 @@ public class WindowInteractable : MonoBehaviour
     public void SetInteractable()
     {
         isInteractable = false;
+    }
+    
+    public void Animate()
+    {
+        myAnimator.SetBool("Sing", true);
     }
 }

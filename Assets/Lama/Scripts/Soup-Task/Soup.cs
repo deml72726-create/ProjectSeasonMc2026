@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WindowInteractable : MonoBehaviour
+public class SoupInteractable : MonoBehaviour
 {
     [Header("Interaction Settings")]
     [Tooltip("The tag assigned to your player GameObject (usually 'Player')")]
@@ -19,10 +19,10 @@ public class WindowInteractable : MonoBehaviour
 
     private void Interact()
     {
-        Debug.Log("Window interacted with!");
+        Debug.Log("Soup interacted with!");
         
         // Fire your GameManager instance event
-        GameManagerSheep.Instance.OnWindowClicked();
+        GameManagerSoup.Instance.OnSoupClicked();
     }
 
     // Automatically detects when the player walks into the interaction zone

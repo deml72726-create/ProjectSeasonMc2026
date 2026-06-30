@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManagerSheep : MonoBehaviour
 {
     // Simple Singleton pattern to easily access the GameManager
-    public static GameManager Instance { get; private set; }
+    public static GameManagerSheep Instance { get; private set; }
 
     public PlayerMovement playerMovementScript;
 
