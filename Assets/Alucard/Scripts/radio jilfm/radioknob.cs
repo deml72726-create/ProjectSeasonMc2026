@@ -10,7 +10,6 @@ public class RadioKnob : MonoBehaviour, IDragHandler
     {
         float deltaX = eventData.delta.x;
         float rotAmount = deltaX * rotationSpeed * Mathf.Cos(Mathf.PI);
-        transform.Rotate(0, 0, rotAmount);
 
         if (onRotationChanged != null)
         {
