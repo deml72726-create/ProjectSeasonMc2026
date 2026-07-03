@@ -1,74 +1,106 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D playerRb;
     public float speed = 5f;
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer; 
     public Transform handSlot;
     public InventoryManager invManager;
 
-    private float input;
     private ItemPickup itemInRange;
     private int selectedIndex = 0;
+    private bool isBusy = false; // Prevents multiple pickup triggers
+
+    void Awake() => spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
     void Update()
     {
-        input = Input.GetAxisRaw("Horizontal");
-        if (input != 0) spriteRenderer.flipX = (input < 0);
+        float input = Input.GetAxisRaw("Horizontal");
+        if (input != 0 && spriteRenderer != null) spriteRenderer.flipX = (input < 0);
+        playerRb.linearVelocity = new Vector2(input * speed, playerRb.linearVelocity.y);
 
-        if (Input.GetKeyDown(KeyCode.E) && itemInRange != null && invManager.inventory.Count < invManager.maxSlots)
+        // Pickup (E) - Now blocked if isBusy is true
+        if (Input.GetKeyDown(KeyCode.E) && itemInRange != null && invManager.inventory.Count < invManager.maxSlots && !isBusy)
         {
-            invManager.AddItem(itemInRange.itemData);
-            itemInRange.gameObject.SetActive(false);
-            selectedIndex = invManager.inventory.Count - 1; // Auto-select the one you just picked up
-            EquipHand(selectedIndex);
-            itemInRange = null;
+            StartCoroutine(PickupRoutine(itemInRange));
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && invManager.inventory.Count > 0) DropItem(selectedIndex);
-
-        // Switch Slots: Now handles empty slots correctly
-        if (Input.GetKeyDown(KeyCode.Alpha1)) ChangeSelection(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) ChangeSelection(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) ChangeSelection(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) ChangeSelection(3);
-    }
-
-    void FixedUpdate() => playerRb.linearVelocity = new Vector2(input * speed, playerRb.linearVelocity.y);
-
-    void ChangeSelection(int index)
-    {
-        selectedIndex = index;
-        EquipHand(selectedIndex);
-    }
-
-    void EquipHand(int index)
-    {
-        // Always clear the hand first
-        foreach (Transform child in handSlot) Destroy(child.gameObject);
-
-        // If the slot is within range AND has an item, spawn it
-        if (index < invManager.inventory.Count)
+        // Drop (Q)
+        if (Input.GetKeyDown(KeyCode.Q) && invManager.inventory.Count > 0 && !isBusy)
         {
-            GameObject go = Instantiate(invManager.inventory[index].prefab, handSlot.position, Quaternion.identity);
+            DropItem(selectedIndex);
+        }
+
+        // Switching Slots
+        if (!isBusy)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1)) { selectedIndex = 0; RefreshHand(); }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) { selectedIndex = 1; RefreshHand(); }
+            if (Input.GetKeyDown(KeyCode.Alpha3)) { selectedIndex = 2; RefreshHand(); }
+            if (Input.GetKeyDown(KeyCode.Alpha4)) { selectedIndex = 3; RefreshHand(); }
+        }
+    }
+
+    IEnumerator PickupRoutine(ItemPickup item)
+    {
+        isBusy = true; // LOCK: No more inputs allowed
+        
+        // 1. Instant Cleanup
+        foreach (Transform child in handSlot) DestroyImmediate(child.gameObject);
+        
+        // 2. Add to inventory and hide real world object immediately
+        invManager.AddItem(item.itemData);
+        item.gameObject.SetActive(false); 
+        selectedIndex = invManager.inventory.Count - 1;
+        
+        // 3. Animation: visual copy travels to hand
+        GameObject visualCopy = Instantiate(item.itemData.prefab, item.transform.position, Quaternion.identity);
+        yield return StartCoroutine(MoveToHeadSmoothly(visualCopy));
+        
+        // 4. Cleanup
+        Destroy(visualCopy);
+        RefreshHand();
+        
+        isBusy = false; // UNLOCK: Ready for next interaction
+        itemInRange = null;
+    }
+
+    void RefreshHand()
+    {
+        foreach (Transform child in handSlot) DestroyImmediate(child.gameObject);
+        if (selectedIndex < invManager.inventory.Count)
+        {
+            GameObject go = Instantiate(invManager.inventory[selectedIndex].prefab, handSlot.position, Quaternion.identity);
             go.transform.SetParent(handSlot);
-            if (go.GetComponent<Collider2D>()) go.GetComponent<Collider2D>().enabled = false;
+            go.transform.localPosition = Vector3.zero;
+            if (!go.GetComponent<FloatEffect>()) go.AddComponent<FloatEffect>();
         }
-        // If the slot is empty, the loop above already cleared the hand, so it stays empty!
+    }
+
+    IEnumerator MoveToHeadSmoothly(GameObject itemObj)
+    {
+        float duration = 0.5f;
+        float elapsed = 0f;
+        Vector3 startPos = itemObj.transform.position;
+        while (elapsed < duration)
+        {
+            float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+            itemObj.transform.position = Vector3.Lerp(startPos, handSlot.position, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     void DropItem(int index)
     {
         ItemData itemToDrop = invManager.inventory[index];
         invManager.RemoveItem(itemToDrop);
-        
-        GameObject droppedObj = Instantiate(itemToDrop.prefab, transform.position + Vector3.right, Quaternion.identity);
+        GameObject droppedObj = Instantiate(itemToDrop.prefab, transform.position, Quaternion.identity);
         if (droppedObj.GetComponent<Collider2D>()) droppedObj.GetComponent<Collider2D>().enabled = true;
-        
-        // After dropping, refresh the hand
         selectedIndex = 0; 
-        EquipHand(selectedIndex);
+        RefreshHand();
     }
 
     private void OnTriggerEnter2D(Collider2D col) { if (col.TryGetComponent(out ItemPickup item)) itemInRange = item; }

@@ -447,7 +447,7 @@ Transform:
   m_GameObject: {fileID: 438152680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13, y: 0, z: 0}
+  m_LocalPosition: {x: 0.02, y: 1.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1247,7 +1247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerRb: {fileID: 1145205051}
   speed: 5
-  spriteRenderer: {fileID: 2073234995}
   handSlot: {fileID: 438152681}
   invManager: {fileID: 1072119526}
 --- !u!50 &1145205051
