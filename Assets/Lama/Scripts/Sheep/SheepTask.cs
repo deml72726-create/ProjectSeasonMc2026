@@ -3,10 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManagerSheep : MonoBehaviour
 {
     // Simple Singleton pattern to easily access the GameManager
-    public static GameManager Instance { get; private set; }
+    public static GameManagerSheep Instance { get; private set; }
 
     public PlayerMovement playerMovementScript;
 
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
     public int lengthofcombination; // The required length of the combination for the current task
     public bool didntfail = true; // Flag to track if the player has failed
     public bool didntreach9 = true; // Flag to track if the player has reached
+    public AudioSource wind; // Assign the wind sound in the inspector
 
 
 
@@ -375,7 +376,8 @@ public class GameManager : MonoBehaviour
         currentCombination = ""; // Reset the combination for Task Three
         lastClickedNumber = -1; // Reset the last clicked number for Task Three
         sheepSpawner.SetActive(true); // Reset the flag for Task Three
-  
+        wind.Play(); // Play the wind sound for Task Three
+
         yield return new WaitUntil(() => puzzleCompleted == true);
 
         sheepSpawner.SetActive(false); // Disable the sheep spawner after the task is completed
@@ -388,6 +390,7 @@ public class GameManager : MonoBehaviour
         // Find every sheep currently in the scene
         TriggerGameLose();
         }
+        wind.Stop(); // Stop the wind sound after the task is completed
         yield return new WaitForSeconds(2f); // Simulate some delay after win/lose is triggered
     }
 
