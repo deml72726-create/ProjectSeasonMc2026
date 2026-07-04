@@ -22,7 +22,7 @@ public class WindowInteractable : MonoBehaviour
         Debug.Log("Window interacted with!");
         
         // Fire your GameManager instance event
-        GameManager.Instance.OnWindowClicked();
+        GameManagerSheep.Instance.OnWindowClicked();
     }
 
     // Automatically detects when the player walks into the interaction zone

@@ -10,7 +10,7 @@ public class RandomNumberGenerator : MonoBehaviour
     
     // 1. We declare these at the top so ALL functions can access them
     private int storedNumber; 
-    private GameManager manager;
+    private GameManagerSheep manager;
     private bool hasBeenClicked = false; // Prevents clicking the same object twice
 
 void Start()
@@ -23,7 +23,7 @@ void Start()
     }
 
     // 1. Find the GameManager FIRST
-    manager = FindAnyObjectByType<GameManager>();
+    manager = FindAnyObjectByType<GameManagerSheep>();
     
     if (manager == null)
     {
