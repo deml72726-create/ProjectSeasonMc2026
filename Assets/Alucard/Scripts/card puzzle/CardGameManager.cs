@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class UICardGameManager : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class UICardGameManager : MonoBehaviour
     private int correctStreak = 0;
     private float wrongPlayProbability = 0.7f;
 
-    void Awake()
+    void Start()
     {
         if (sfxSource != null)
         {
@@ -56,10 +57,7 @@ public class UICardGameManager : MonoBehaviour
             starFaceSource.playOnAwake = false;
             starFaceSource.Stop();
         }
-    }
 
-    void Start()
-    {
         if (allCards == null || allCards.Length == 0)
         {
             Debug.LogError("All Cards array is empty in the Inspector");
@@ -74,6 +72,17 @@ public class UICardGameManager : MonoBehaviour
 
         SaveCardTargetPositions();
         StartRound();
+    }
+
+    void Update()
+    {
+        if (cardGameCanvas != null && cardGameCanvas.activeSelf)
+        {
+            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                ResetAndCloseCardGame();
+            }
+        }
     }
 
     void SaveCardTargetPositions()
@@ -325,6 +334,9 @@ public class UICardGameManager : MonoBehaviour
             ambientSource.loop = true;
             ambientSource.Play();
         }
+
+        currentRound = 1;
+        StartRound();
     }
 
     public void CloseCardGame()
@@ -343,6 +355,24 @@ public class UICardGameManager : MonoBehaviour
         {
             starFaceSource.Stop();
         }
+    }
+
+    public void ResetAndCloseCardGame()
+    {
+        StopAllCoroutines();
+
+        if (starFaceSource != null)
+        {
+            starFaceSource.Stop();
+        }
+
+        firstCard = null;
+        secondCard = null;
+        canFlip = true;
+        matchesFound = 0;
+        correctStreak = 0;
+
+        CloseCardGame();
     }
 
     public void OnCardClicked(UICard clickedCard)
