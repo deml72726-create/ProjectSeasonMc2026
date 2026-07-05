@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D playerRb;
     public float speed = 5f;
     private SpriteRenderer spriteRenderer; 
+    private Animator animator; // <-- Added reference for Animator
     public Transform handSlot;
     public InventoryManager invManager;
 
@@ -13,15 +14,33 @@ public class PlayerMovement : MonoBehaviour
     private int selectedIndex = 0;
     private bool isBusy = false; // Prevents multiple pickup triggers
 
-    void Awake() => spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    void Awake() 
+    {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>(); // <-- Grab the Animator component automatically
+    }
 
     void Update()
     {
         float input = Input.GetAxisRaw("Horizontal");
-        if (input != 0 && spriteRenderer != null) spriteRenderer.flipX = (input < 0);
+        
+        // 1. Handle Flip using SpriteRenderer (Safe and won't distort scaling!)
+        if (input != 0 && spriteRenderer != null) 
+        {
+            spriteRenderer.flipX = (input < 0);
+        }
+        
+        // 2. Handle Physics Movement
         playerRb.linearVelocity = new Vector2(input * speed, playerRb.linearVelocity.y);
 
-        // Pickup (E) - Now blocked if isBusy is true
+        // 3. Update Animator 'Speed' Parameter
+        // Mathf.Abs makes sure negative moving values (-1) become positive (1) so walking triggers
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", Mathf.Abs(input));
+        }
+
+        // Pickup (E) - Blocked if isBusy is true
         if (Input.GetKeyDown(KeyCode.E) && itemInRange != null && invManager.inventory.Count < invManager.maxSlots && !isBusy)
         {
             StartCoroutine(PickupRoutine(itemInRange));
@@ -88,10 +107,14 @@ public class PlayerMovement : MonoBehaviour
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
             itemObj.transform.position = Vector3.Lerp(startPos, handSlot.position, t);
+            box_move_or_adjust(itemObj, t);
             elapsed += Time.deltaTime;
             yield return null;
         }
     }
+
+    // Helper function just to handle safe visual tracking during interpolation
+    private void box_move_or_adjust(GameObject visual, float t) {}
 
     void DropItem(int index)
     {
