@@ -1,73 +1,53 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using TMPro; // Make sure to include this
 
-public class shinyinteractableo : MonoBehaviour
+public class ShinyInteractable : MonoBehaviour
 {
+    [Header("Visuals")]
     public SpriteRenderer spriteRenderer;
     public Material outlineMaterial;
     private Material defaultMaterial;
-    public string interactionText = "This is a dusty shelf.";
-    private bool isHovered = false;
+
+    [Header("UI Prompt")]
+    public GameObject promptUI;      // Drag your Panel/UI here
+    public TMP_Text promptText;      // Drag your TextMeshPro object here
+    public string interactionMessage = "Press E to investigate";
 
     void Start()
     {
-        if (spriteRenderer == null)
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMaterial = spriteRenderer.material;
+
+        if (promptUI != null) promptUI.SetActive(false);
     }
 
-    void Update()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (Mouse.current == null) return;
-
-        Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
-        
-        RaycastHit2D hit = Physics2D.Raycast(mousePosition, Vector2.zero);
-
-        if (hit.collider != null && hit.collider.gameObject == gameObject)
+        if (other.CompareTag("Player"))
         {
-            if (!isHovered)
-            {
-                isHovered = true;
-                OnHoverEnter();
-            }
+            // Apply Outline
+            if (spriteRenderer != null && outlineMaterial != null)
+                spriteRenderer.material = outlineMaterial;
 
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            // Show Text
+            if (promptUI != null)
             {
-                OnClick();
-            }
-        }
-        else
-        {
-            if (isHovered)
-            {
-                isHovered = false;
-                OnHoverExit();
+                promptUI.SetActive(true);
+                if (promptText != null) promptText.text = interactionMessage;
             }
         }
     }
 
-    void OnHoverEnter()
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (spriteRenderer != null && outlineMaterial != null)
+        if (other.CompareTag("Player"))
         {
-            spriteRenderer.material = outlineMaterial;
-        }
-    }
+            // Revert Outline
+            if (spriteRenderer != null)
+                spriteRenderer.material = defaultMaterial;
 
-    void OnHoverExit()
-    {
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.material = defaultMaterial;
+            // Hide Text
+            if (promptUI != null) promptUI.SetActive(false);
         }
-    }
-
-    void OnClick()
-    {
-        Debug.Log(interactionText);
     }
 }
