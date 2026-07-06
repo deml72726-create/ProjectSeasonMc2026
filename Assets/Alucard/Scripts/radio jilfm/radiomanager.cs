@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class radiomanager : MonoBehaviour
@@ -9,8 +10,8 @@ public class radiomanager : MonoBehaviour
     public RadioKnob volumeKnob;
     public RectTransform tuningNeedle;
 
-    public float needleMinX = -240.0f;
-    public float needleMaxX = 240.0f;
+    public float needleMinX = 200.0f;
+    public float needleMaxX = 200.0f;
 
     public Button[] bandButtons;
     public int targetBandIndex = 1;
@@ -67,6 +68,17 @@ public class radiomanager : MonoBehaviour
         UpdateTuningAudioAndText();
     }
 
+    void Update()
+    {
+        if (puzzleCanvas != null && puzzleCanvas.activeSelf)
+        {
+            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                ResetAndCloseRadio();
+            }
+        }
+    }
+
     void RandomizeStartingFrequency()
     {
         float randomStartFreq = Random.value;
@@ -105,8 +117,9 @@ public class radiomanager : MonoBehaviour
 
         tuningNeedle.localPosition = new Vector3(newNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
 
+        float totalWidthAbs = Mathf.Abs(needleMaxX + (needleMinX * Mathf.Cos(Mathf.PI)));
         float currentOffset = newNeedleX + (needleMinX * Mathf.Cos(Mathf.PI));
-        currentFrequency = Mathf.Clamp01(currentOffset / totalWidth);
+        currentFrequency = Mathf.Clamp01(currentOffset / totalWidthAbs);
 
         UpdateTuningAudioAndText();
     }
@@ -158,7 +171,7 @@ public class radiomanager : MonoBehaviour
         if (error < 0.02f && !isSolved)
         {
             isSolved = true;
-            Debug.Log("Radio successfully tuned!");
+            StartCoroutine(SolveSequence());
         }
     }
 
@@ -181,5 +194,70 @@ public class radiomanager : MonoBehaviour
         }
 
         subtitleText.text = new string(chars);
+    }
+
+    IEnumerator SolveSequence()
+    {
+        isSolved = true;
+
+        float totalWidth = Mathf.Abs(needleMaxX + (needleMinX * Mathf.Cos(Mathf.PI)));
+        float solvedNeedleX = needleMinX + (targetFrequency * totalWidth);
+        tuningNeedle.localPosition = new Vector3(solvedNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
+
+        if (staticSource != null)
+        {
+            staticSource.volume = 0;
+            staticSource.Stop();
+        }
+
+        if (voiceSource != null)
+        {
+            voiceSource.volume = 1.0f;
+        }
+
+        if (subtitleText != null)
+        {
+            subtitleText.text = targetDecodedMessage;
+        }
+
+        if (sfxSource != null && sfxSolve != null)
+        {
+            sfxSource.PlayOneShot(sfxSolve);
+        }
+
+        yield return null;
+    }
+
+    public void OpenRadio()
+    {
+        if (puzzleCanvas != null)
+        {
+            puzzleCanvas.SetActive(true);
+        }
+        if (staticSource != null && voiceSource != null)
+        {
+            staticSource.Play();
+            voiceSource.Play();
+        }
+        UpdateTuningAudioAndText();
+    }
+
+    public void CloseRadio()
+    {
+        if (puzzleCanvas != null)
+        {
+            puzzleCanvas.SetActive(false);
+        }
+        if (staticSource != null && voiceSource != null)
+        {
+            staticSource.Stop();
+            voiceSource.Stop();
+        }
+    }
+
+    public void ResetAndCloseRadio()
+    {
+        StopAllCoroutines();
+        CloseRadio();
     }
 }
