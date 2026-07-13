@@ -1,5 +1,6 @@
 using UnityEngine;
-using TMPro; // Make sure to include this
+using TMPro;
+using System.Collections;
 
 public class ShinyInteractable : MonoBehaviour
 {
@@ -8,32 +9,43 @@ public class ShinyInteractable : MonoBehaviour
     public Material outlineMaterial;
     private Material defaultMaterial;
 
-    [Header("UI Prompt")]
-    public GameObject promptUI;      // Drag your Panel/UI here
-    public TMP_Text promptText;      // Drag your TextMeshPro object here
+    [Header("Bubble Settings")]
+    public bool isBubbleEnabled = true;
+    public CanvasGroup bubbleCanvasGroup; 
+    public TMP_Text bubbleText; 
+    public float fadeDuration = 0.3f;
+    
+    [TextArea]
     public string interactionMessage = "Press E to investigate";
+
+    private Coroutine fadeCoroutine;
 
     void Start()
     {
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         defaultMaterial = spriteRenderer.material;
 
-        if (promptUI != null) promptUI.SetActive(false);
+        if (bubbleCanvasGroup != null)
+        {
+            bubbleCanvasGroup.alpha = 0f;
+            bubbleCanvasGroup.blocksRaycasts = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // Apply Outline
+            // Update the text specifically when entering the trigger
+            if (bubbleText != null) bubbleText.text = interactionMessage;
+
             if (spriteRenderer != null && outlineMaterial != null)
                 spriteRenderer.material = outlineMaterial;
 
-            // Show Text
-            if (promptUI != null)
+            if (isBubbleEnabled && bubbleCanvasGroup != null)
             {
-                promptUI.SetActive(true);
-                if (promptText != null) promptText.text = interactionMessage;
+                StopFade();
+                fadeCoroutine = StartCoroutine(FadeCanvasGroup(bubbleCanvasGroup, 1f));
             }
         }
     }
@@ -42,12 +54,37 @@ public class ShinyInteractable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Revert Outline
             if (spriteRenderer != null)
                 spriteRenderer.material = defaultMaterial;
 
-            // Hide Text
-            if (promptUI != null) promptUI.SetActive(false);
+            if (isBubbleEnabled && bubbleCanvasGroup != null)
+            {
+                StopFade();
+                fadeCoroutine = StartCoroutine(FadeCanvasGroup(bubbleCanvasGroup, 0f));
+            }
         }
+    }
+
+    IEnumerator FadeCanvasGroup(CanvasGroup cg, float targetAlpha)
+    {
+        float startAlpha = cg.alpha;
+        float time = 0f;
+
+        if (targetAlpha > 0) cg.blocksRaycasts = true;
+
+        while (time < fadeDuration)
+        {
+            time += Time.deltaTime;
+            cg.alpha = Mathf.Lerp(startAlpha, targetAlpha, time / fadeDuration);
+            yield return null;
+        }
+
+        cg.alpha = targetAlpha;
+        if (targetAlpha == 0) cg.blocksRaycasts = false;
+    }
+
+    void StopFade()
+    {
+        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
     }
 }
