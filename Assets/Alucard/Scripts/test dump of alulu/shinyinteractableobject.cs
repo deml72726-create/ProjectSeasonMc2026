@@ -1,9 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
-using TMPro;
-using System.Collections;
 
 public class ShinyInteractable : MonoBehaviour
 {
@@ -11,21 +11,17 @@ public class ShinyInteractable : MonoBehaviour
     public Material outlineMaterial;
     public GameObject promptUI;
     public TMP_Text promptText;
-    private Material defaultMaterial;
 
-    [Header("Bubble Settings")]
     public bool isBubbleEnabled = true;
     public CanvasGroup bubbleCanvasGroup; 
     public TMP_Text bubbleText; 
     public float fadeDuration = 0.3f;
     
-    [TextArea]
     public string interactionMessage = "Press E to investigate";
     public GameObject puzzleCanvas;
 
     private Material defaultMaterial;
     private bool playerInRange = false;
-
     private Coroutine fadeCoroutine;
 
     void Start()
@@ -54,10 +50,11 @@ public class ShinyInteractable : MonoBehaviour
             {
                 promptUI.SetActive(false);
             }
-        if (bubbleCanvasGroup != null)
-        {
-            bubbleCanvasGroup.alpha = 0f;
-            bubbleCanvasGroup.blocksRaycasts = false;
+            if (bubbleCanvasGroup != null)
+            {
+                bubbleCanvasGroup.alpha = 0f;
+                bubbleCanvasGroup.blocksRaycasts = false;
+            }
         }
     }
 
@@ -79,16 +76,17 @@ public class ShinyInteractable : MonoBehaviour
                 {
                     promptText.text = interactionMessage;
                 }
-            // Update the text specifically when entering the trigger
-            if (bubbleText != null) bubbleText.text = interactionMessage;
+            }
 
-            if (spriteRenderer != null && outlineMaterial != null)
-                spriteRenderer.material = outlineMaterial;
+            if (bubbleText != null)
+            {
+                bubbleText.text = interactionMessage;
+            }
 
             if (isBubbleEnabled && bubbleCanvasGroup != null)
             {
                 StopFade();
-                fadeCoroutine = StartCoroutine(FadeCanvasGroup(bubbleCanvasGroup, 1f));
+                fadeCoroutine = StartCoroutine(FadeCanvasGroup(bubbleCanvasGroup, 1.0f));
             }
         }
     }
@@ -107,13 +105,12 @@ public class ShinyInteractable : MonoBehaviour
             if (promptUI != null)
             {
                 promptUI.SetActive(false);
-            if (spriteRenderer != null)
-                spriteRenderer.material = defaultMaterial;
+            }
 
             if (isBubbleEnabled && bubbleCanvasGroup != null)
             {
                 StopFade();
-                fadeCoroutine = StartCoroutine(FadeCanvasGroup(bubbleCanvasGroup, 0f));
+                fadeCoroutine = StartCoroutine(FadeCanvasGroup(bubbleCanvasGroup, 0.0f));
             }
         }
     }
@@ -121,9 +118,12 @@ public class ShinyInteractable : MonoBehaviour
     IEnumerator FadeCanvasGroup(CanvasGroup cg, float targetAlpha)
     {
         float startAlpha = cg.alpha;
-        float time = 0f;
+        float time = 0.0f;
 
-        if (targetAlpha > 0) cg.blocksRaycasts = true;
+        if (targetAlpha > 0)
+        {
+            cg.blocksRaycasts = true;
+        }
 
         while (time < fadeDuration)
         {
@@ -133,11 +133,17 @@ public class ShinyInteractable : MonoBehaviour
         }
 
         cg.alpha = targetAlpha;
-        if (targetAlpha == 0) cg.blocksRaycasts = false;
+        if (targetAlpha == 0)
+        {
+            cg.blocksRaycasts = false;
+        }
     }
 
     void StopFade()
     {
-        if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+        if (fadeCoroutine != null)
+        {
+            StopCoroutine(fadeCoroutine);
+        }
     }
 }
