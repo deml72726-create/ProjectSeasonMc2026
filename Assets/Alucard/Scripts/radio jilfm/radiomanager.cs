@@ -65,7 +65,6 @@ public class radiomanager : MonoBehaviour
 
         targetFrequency = Random.Range(0.15f, 0.85f);
         RandomizeStartingFrequency();
-        UpdateTuningAudioAndText();
     }
 
     void Update()
@@ -95,6 +94,7 @@ public class radiomanager : MonoBehaviour
 
     void SetActiveBand(int index)
     {
+        if (isSolved) return;
         activeBandIndex = index;
         UpdateTuningAudioAndText();
     }
@@ -141,6 +141,8 @@ public class radiomanager : MonoBehaviour
 
     void UpdateTuningAudioAndText()
     {
+        if (isSolved) return;
+
         float error = 1.0f;
 
         if (activeBandIndex == targetBandIndex)
@@ -168,9 +170,8 @@ public class radiomanager : MonoBehaviour
             debugText.text = "Current Freq: " + currentFrequency.ToString("F3") + "\nTarget Freq: " + targetFrequency.ToString("F3") + "\nActive Band: " + activeBandIndex + " (Target: " + targetBandIndex + ")";
         }
 
-        if (error < 0.02f && !isSolved)
+        if (error < 0.02f)
         {
-            isSolved = true;
             StartCoroutine(SolveSequence());
         }
     }
@@ -201,7 +202,7 @@ public class radiomanager : MonoBehaviour
         isSolved = true;
 
         float totalWidth = Mathf.Abs(needleMaxX + (needleMinX * Mathf.Cos(Mathf.PI)));
-        float solvedNeedleX = needleMinX + (targetFrequency * totalWidth);
+        float solvedNeedleX = (targetFrequency * totalWidth) + (needleMinX * Mathf.Cos(Mathf.PI));
         tuningNeedle.localPosition = new Vector3(solvedNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
 
         if (staticSource != null)

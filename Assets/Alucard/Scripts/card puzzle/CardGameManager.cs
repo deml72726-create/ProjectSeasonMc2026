@@ -2,15 +2,27 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class UICardGameManager : MonoBehaviour
 {
+    public static UICardGameManager Instance;
+
     public GameObject toyRewardPrefab;
     public Transform rewardSpawnPoint;
     public GameObject missingCardButton;
     public GameObject cardGameCanvas;
     public CanvasGroup anxietyVignette;
     public int currentRound = 1;
+
+    [Header("UI Dialogue System")]
+    public CanvasGroup targetDialogueGroup;
+    public TMP_Text targetDialogueText;
+    public string rulesDialogue = "Match the pairs. Do not make a single mistake, or we start over.";
+    public string mistakeDialogue = "Are you sure you are doing it the right way?";
+
+    [Header("Victory Reward")]
+    public Sprite coinRewardSprite;
 
     public UICard[] allCards;
     public Transform shuffleCenterPoint;
@@ -31,17 +43,26 @@ public class UICardGameManager : MonoBehaviour
     public AudioClip sfxFlipBackGroup;
     public AudioClip ambientGothic;
 
+    public bool isPlayingCardGame = false;
+
     private UICard firstCard;
     private UICard secondCard;
     private bool canFlip = false;
     private int matchesFound = 0;
     private int totalPairsNeeded;
     private Coroutine fadeCoroutine;
+    private Coroutine activeDialogueCoroutine;
+    private Coroutine typeCoroutine;
     private int correctStreak = 0;
     private float wrongPlayProbability = 0.7f;
 
-    void Start()
+    void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         if (sfxSource != null)
         {
             sfxSource.playOnAwake = false;
@@ -57,7 +78,10 @@ public class UICardGameManager : MonoBehaviour
             starFaceSource.playOnAwake = false;
             starFaceSource.Stop();
         }
+    }
 
+    void Start()
+    {
         if (allCards == null || allCards.Length == 0)
         {
             Debug.LogError("All Cards array is empty in the Inspector");
@@ -70,8 +94,17 @@ public class UICardGameManager : MonoBehaviour
             return;
         }
 
-        SaveCardTargetPositions();
-        StartRound();
+        if (missingCardButton != null)
+        {
+            missingCardButton.SetActive(false);
+        }
+
+        if (targetDialogueGroup != null)
+        {
+            targetDialogueGroup.alpha = 0.0f;
+            targetDialogueGroup.blocksRaycasts = false;
+            targetDialogueGroup.gameObject.SetActive(false);
+        }
     }
 
     void Update()
@@ -82,6 +115,13 @@ public class UICardGameManager : MonoBehaviour
             {
                 ResetAndCloseCardGame();
             }
+        }
+
+        if (activeDialogueCoroutine != null && targetDialogueGroup != null)
+        {
+            targetDialogueGroup.gameObject.SetActive(true);
+            targetDialogueGroup.alpha = 1.0f;
+            targetDialogueGroup.blocksRaycasts = true;
         }
     }
 
@@ -110,6 +150,11 @@ public class UICardGameManager : MonoBehaviour
 
     public void StartRound()
     {
+        if (targetPositions == null)
+        {
+            SaveCardTargetPositions();
+        }
+
         matchesFound = 0;
         firstCard = null;
         secondCard = null;
@@ -118,6 +163,7 @@ public class UICardGameManager : MonoBehaviour
         if (currentRound == 1)
         {
             activeCardsCount = 4;
+            TriggerDialogue(rulesDialogue);
         }
         else if (currentRound == 2)
         {
@@ -323,6 +369,13 @@ public class UICardGameManager : MonoBehaviour
 
     public void OpenCardGame()
     {
+        if (missingCardButton != null && !missingCardButton.activeSelf)
+        {
+            return;
+        }
+
+        isPlayingCardGame = true;
+
         if (cardGameCanvas != null)
         {
             cardGameCanvas.SetActive(true);
@@ -341,6 +394,8 @@ public class UICardGameManager : MonoBehaviour
 
     public void CloseCardGame()
     {
+        isPlayingCardGame = false;
+
         if (cardGameCanvas != null)
         {
             cardGameCanvas.SetActive(false);
@@ -354,6 +409,13 @@ public class UICardGameManager : MonoBehaviour
         if (starFaceSource != null)
         {
             starFaceSource.Stop();
+        }
+
+        if (targetDialogueGroup != null)
+        {
+            targetDialogueGroup.alpha = 0.0f;
+            targetDialogueGroup.blocksRaycasts = false;
+            targetDialogueGroup.gameObject.SetActive(false);
         }
     }
 
@@ -469,6 +531,7 @@ public class UICardGameManager : MonoBehaviour
                     sfxSource.PlayOneShot(sfxWrong);
                 }
 
+                TriggerDialogue(mistakeDialogue);
                 StartCoroutine(RestartRoundSequence());
             }
 
@@ -624,11 +687,57 @@ public class UICardGameManager : MonoBehaviour
         anxietyVignette.alpha = targetAlpha;
     }
 
+    public void TriggerDialogue(string message)
+    {
+        if (targetDialogueGroup != null && targetDialogueText != null)
+        {
+            targetDialogueGroup.gameObject.SetActive(true);
+            targetDialogueGroup.alpha = 1.0f;
+            targetDialogueGroup.blocksRaycasts = true;
+
+            if (typeCoroutine != null)
+            {
+                StopCoroutine(typeCoroutine);
+            }
+            typeCoroutine = StartCoroutine(TypeDialogueText(message));
+
+            if (activeDialogueCoroutine != null)
+            {
+                StopCoroutine(activeDialogueCoroutine);
+            }
+            activeDialogueCoroutine = StartCoroutine(AutoCloseDialogue());
+        }
+    }
+
+    IEnumerator TypeDialogueText(string message)
+    {
+        targetDialogueText.text = "";
+        float typeSpeed = 0.05f;
+
+        foreach (char c in message.ToCharArray())
+        {
+            targetDialogueText.text += c;
+            yield return new WaitForSeconds(typeSpeed);
+        }
+    }
+
+    IEnumerator AutoCloseDialogue()
+    {
+        yield return new WaitForSeconds(3.0f);
+        if (targetDialogueGroup != null)
+        {
+            targetDialogueGroup.alpha = 0.0f;
+            targetDialogueGroup.blocksRaycasts = false;
+            targetDialogueGroup.gameObject.SetActive(false);
+        }
+        activeDialogueCoroutine = null;
+    }
+
     void WinGame()
     {
-        if (toyRewardPrefab != null && rewardSpawnPoint != null)
+        if (NewItemPopup.Instance != null && coinRewardSprite != null)
         {
-            Instantiate(toyRewardPrefab, rewardSpawnPoint.position, Quaternion.identity);
+            NewItemPopup.Instance.ShowUnlockPopup(coinRewardSprite, "Golden Coin", "A shiny coin rewarded by Mr. Star Face. It is used to get the toys.");
         }
         CloseCardGame();
     }
