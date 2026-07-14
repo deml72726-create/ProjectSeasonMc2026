@@ -1,0 +1,2925 @@
+fileFormatVersion: 2
+guid: 5dccafe104335664f8f0ae7857c59528
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3411172090549554358
+    second: Chat Bubble Long_0
+  - first:
+      213: -2042452142786429662
+    second: Chat Bubble Long_1
+  - first:
+      213: 2826145954590388451
+    second: Chat Bubble Long_2
+  - first:
+      213: -3584359158086709671
+    second: Chat Bubble Long_3
+  - first:
+      213: 7714097785053100269
+    second: Chat Bubble Long_4
+  - first:
+      213: -3883775095553541106
+    second: Chat Bubble Long_5
+  - first:
+      213: 4382652550587033814
+    second: Chat Bubble Long_6
+  - first:
+      213: -5223738246110367450
+    second: Chat Bubble Long_7
+  - first:
+      213: -4811230066274459973
+    second: Chat Bubble Long_8
+  - first:
+      213: -617257540348900583
+    second: Chat Bubble Long_9
+  - first:
+      213: 9111751911144510667
+    second: Chat Bubble Long_10
+  - first:
+      213: 2111916266902813638
+    second: Chat Bubble Long_11
+  - first:
+      213: 8475850489947729902
+    second: Chat Bubble Long_12
+  - first:
+      213: -5643298839858759778
+    second: Chat Bubble Long_13
+  - first:
+      213: -6932705953771580230
+    second: Chat Bubble Long_14
+  - first:
+      213: -3999294748203884906
+    second: Chat Bubble Long_15
+  - first:
+      213: 8530712099227847873
+    second: Chat Bubble Long_16
+  - first:
+      213: -6682335970168835511
+    second: Chat Bubble Long_17
+  - first:
+      213: 6855915886162272280
+    second: Chat Bubble Long_18
+  - first:
+      213: 8447773502724152834
+    second: Chat Bubble Long_19
+  - first:
+      213: 7562914986937687792
+    second: Chat Bubble Long_20
+  - first:
+      213: 4384107865926487623
+    second: Chat Bubble Long_21
+  - first:
+      213: -6027905813118817086
+    second: Chat Bubble Long_22
+  - first:
+      213: 8450420740855831590
+    second: Chat Bubble Long_23
+  - first:
+      213: 2092385102471475264
+    second: Chat Bubble Long_24
+  - first:
+      213: -3106874762165072273
+    second: Chat Bubble Long_25
+  - first:
+      213: 6310705294988782728
+    second: Chat Bubble Long_26
+  - first:
+      213: 6412057411153505358
+    second: Chat Bubble Long_27
+  - first:
+      213: -8453175089703315477
+    second: Chat Bubble Long_28
+  - first:
+      213: 5262613646960791625
+    second: Chat Bubble Long_29
+  - first:
+      213: 7902013005416935269
+    second: Chat Bubble Long_30
+  - first:
+      213: 3710468220581019484
+    second: Chat Bubble Long_31
+  - first:
+      213: -6374678245276447335
+    second: Chat Bubble Long_32
+  - first:
+      213: 1084895327389220497
+    second: Chat Bubble Long_33
+  - first:
+      213: -3540668543189021778
+    second: Chat Bubble Long_34
+  - first:
+      213: -6483870950078560834
+    second: Chat Bubble Long_35
+  - first:
+      213: 3892433984417451568
+    second: Chat Bubble Long_36
+  - first:
+      213: 2263647978974797118
+    second: Chat Bubble Long_37
+  - first:
+      213: -7192981643934141333
+    second: Chat Bubble Long_38
+  - first:
+      213: 4554025404009722418
+    second: Chat Bubble Long_39
+  - first:
+      213: 176639530984282081
+    second: Chat Bubble Long_40
+  - first:
+      213: 3173292794829476424
+    second: Chat Bubble Long_41
+  - first:
+      213: 1190727344230152920
+    second: Chat Bubble Long_42
+  - first:
+      213: -7199362763997457431
+    second: Chat Bubble Long_43
+  - first:
+      213: -2794866055010173834
+    second: Chat Bubble Long_44
+  - first:
+      213: -7515375509171059992
+    second: Chat Bubble Long_45
+  - first:
+      213: -6995060431310319071
+    second: Chat Bubble Long_46
+  - first:
+      213: 8264833135087398769
+    second: Chat Bubble Long_47
+  - first:
+      213: 5827869610928512379
+    second: Chat Bubble Long_48
+  - first:
+      213: 2605049728160100309
+    second: Chat Bubble Long_49
+  - first:
+      213: 1803579084174520123
+    second: Chat Bubble Long_50
+  - first:
+      213: -1509650199859527824
+    second: Chat Bubble Long_51
+  - first:
+      213: -8650620627233707801
+    second: Chat Bubble Long_52
+  - first:
+      213: 7719995149719897054
+    second: Chat Bubble Long_53
+  - first:
+      213: -7513524891647995959
+    second: Chat Bubble Long_54
+  - first:
+      213: 8179582836480556695
+    second: Chat Bubble Long_55
+  - first:
+      213: -7006492410477768265
+    second: Chat Bubble Long_56
+  - first:
+      213: 8936967435937242737
+    second: Chat Bubble Long_57
+  - first:
+      213: -8040343729559753296
+    second: Chat Bubble Long_58
+  - first:
+      213: 7102321144913450261
+    second: Chat Bubble Long_59
+  - first:
+      213: -4447098171273137158
+    second: Chat Bubble Long_60
+  - first:
+      213: 2740858542333591154
+    second: Chat Bubble Long_61
+  - first:
+      213: -210662577979460652
+    second: Chat Bubble Long_62
+  - first:
+      213: -6995261745183977421
+    second: Chat Bubble Long_63
+  - first:
+      213: -2403696321273569435
+    second: Chat Bubble Long_64
+  - first:
+      213: 2980276092697714867
+    second: Chat Bubble Long_65
+  - first:
+      213: 3913401999660464658
+    second: Chat Bubble Long_66
+  - first:
+      213: 8717966316383412864
+    second: Chat Bubble Long_67
+  - first:
+      213: 7190607431026915846
+    second: Chat Bubble Long_68
+  - first:
+      213: 2058589153157421837
+    second: Chat Bubble Long_69
+  - first:
+      213: -4023582483190842982
+    second: Chat Bubble Long_70
+  - first:
+      213: -5341693466329509430
+    second: Chat Bubble Long_71
+  - first:
+      213: 3299988824768972621
+    second: Chat Bubble Long_72
+  - first:
+      213: 1045944294777126657
+    second: Chat Bubble Long_73
+  - first:
+      213: -1830778536904689794
+    second: Chat Bubble Long_74
+  - first:
+      213: 4595856389351056278
+    second: Chat Bubble Long_75
+  - first:
+      213: 1289394280480450611
+    second: Chat Bubble Long_76
+  - first:
+      213: -9037578985527627296
+    second: Chat Bubble Long_77
+  - first:
+      213: 874255565805114252
+    second: Chat Bubble Long_78
+  - first:
+      213: -354350057983306597
+    second: Chat Bubble Long_79
+  - first:
+      213: 7714238968307681003
+    second: Chat Bubble Long_80
+  - first:
+      213: 2987650886881946637
+    second: Chat Bubble Long_81
+  - first:
+      213: -7561577747169786600
+    second: Chat Bubble Long_82
+  - first:
+      213: 7040341090457871883
+    second: Chat Bubble Long_83
+  - first:
+      213: 5691015689940717661
+    second: Chat Bubble Long_84
+  - first:
+      213: 3042076757014437815
+    second: Chat Bubble Long_85
+  - first:
+      213: -531936994349289303
+    second: Chat Bubble Long_86
+  - first:
+      213: 4188546681147529797
+    second: Chat Bubble Long_87
+  - first:
+      213: -8310107155805486363
+    second: Chat Bubble Long_88
+  - first:
+      213: 6279330170780551667
+    second: Chat Bubble Long_89
+  - first:
+      213: -8634284925067569467
+    second: Chat Bubble Long_90
+  - first:
+      213: -4100223263350546851
+    second: Chat Bubble Long_91
+  - first:
+      213: 4794320413980473170
+    second: Chat Bubble Long_92
+  - first:
+      213: -4820444209743395515
+    second: Chat Bubble Long_93
+  - first:
+      213: 8999134634899566237
+    second: Chat Bubble Long_94
+  - first:
+      213: 4494621685923429297
+    second: Chat Bubble Long_95
+  - first:
+      213: 1903546864972012228
+    second: Chat Bubble Long_96
+  - first:
+      213: -986446973280892116
+    second: Chat Bubble Long_97
+  - first:
+      213: 5303952361186550205
+    second: Chat Bubble Long_98
+  - first:
+      213: -466034615237123307
+    second: Chat Bubble Long_99
+  - first:
+      213: -8615368008328612779
+    second: Chat Bubble Long_100
+  - first:
+      213: 349276840386885718
+    second: Chat Bubble Long_101
+  - first:
+      213: -6320466829402738719
+    second: Chat Bubble Long_102
+  - first:
+      213: -6589606830498719481
+    second: Chat Bubble Long_103
+  - first:
+      213: -5367958642018460068
+    second: Chat Bubble Long_104
+  - first:
+      213: 5566973826595140162
+    second: Chat Bubble Long_105
+  - first:
+      213: 1169278320595757168
+    second: Chat Bubble Long_106
+  - first:
+      213: 4689500092109933469
+    second: Chat Bubble Long_107
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Chat Bubble Long_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 231
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a43311b8e0519a0d0800000000000000
+      internalID: -3411172090549554358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 1413
+        height: 370
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22dba76f890c7a3e0800000000000000
+      internalID: -2042452142786429662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 974
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e074caa5cc783720800000000000000
+      internalID: 2826145954590388451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_3
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 839
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ec2d2265cc14ec0800000000000000
+      internalID: -3584359158086709671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_4
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 814
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de8b7b0801bfd0b60800000000000000
+      internalID: 7714097785053100269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_5
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 724
+        width: 8
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0cb502b02f0a1ac0800000000000000
+      internalID: -3883775095553541106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_6
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 719
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d823b3464f42dc30800000000000000
+      internalID: 4382652550587033814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 710
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62138f0edbd8187b0800000000000000
+      internalID: -5223738246110367450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_8
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 694
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbe1807eeb31b3db0800000000000000
+      internalID: -4811230066274459973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_9
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 671
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b8294998f0f67f0800000000000000
+      internalID: -617257540348900583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_10
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 648
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc451494612737e70800000000000000
+      internalID: 9111751911144510667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_11
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 630
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cb7c14c7a80f4d10800000000000000
+      internalID: 2111916266902813638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_12
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 622
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eefa7a61d1540a570800000000000000
+      internalID: 8475850489947729902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_13
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 550
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9738d8ca99fea1b0800000000000000
+      internalID: -5643298839858759778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_14
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 531
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab495358aa41acf90800000000000000
+      internalID: -6932705953771580230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_15
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 526
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ed83d9d96af78c0800000000000000
+      internalID: -3999294748203884906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_16
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 518
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cc4a93e47d236670800000000000000
+      internalID: 8530712099227847873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_17
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 496
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9427544f6d29343a0800000000000000
+      internalID: -6682335970168835511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_18
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 475
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 810e8ac9c2b152f50800000000000000
+      internalID: 6855915886162272280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_19
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 459
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e94d41e358c3570800000000000000
+      internalID: 8447773502724152834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_20
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 446
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe16ee4c1fd4f860800000000000000
+      internalID: 7562914986937687792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_21
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 435
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e4b8540ea77dc30800000000000000
+      internalID: 4384107865926487623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_22
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 422
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cc6a85a993985ca0800000000000000
+      internalID: -6027905813118817086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_23
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 406
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62c1e4d34ece54570800000000000000
+      internalID: 8450420740855831590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_24
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 395
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 040b12e2a25a90d10800000000000000
+      internalID: 2092385102471475264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_25
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 390
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e468f5dd922e4d0800000000000000
+      internalID: -3106874762165072273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_26
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 86
+        width: 8
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88cabfdb701249750800000000000000
+      internalID: 6310705294988782728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_27
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 76
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c273f2e343cf850800000000000000
+      internalID: 6412057411153505358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_28
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 67
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be79d02fa0a40ba80800000000000000
+      internalID: -8453175089703315477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_29
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 62
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9409839ba3f880940800000000000000
+      internalID: 5262613646960791625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_30
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 51
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56fa46636f699ad60800000000000000
+      internalID: 7902013005416935269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_31
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 35
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f7b1e003b3e7330800000000000000
+      internalID: 3710468220581019484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_32
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 30
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d03e019e79887a0800000000000000
+      internalID: -6374678245276447335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_33
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 822
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19ef38f5d825e0f00800000000000000
+      internalID: 1084895327389220497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_34
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 606
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab81df18b40ddec0800000000000000
+      internalID: -3540668543189021778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_35
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 1293
+        height: 1024
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb5c71359b9a406a0800000000000000
+      internalID: -6483870950078560834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_36
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 728
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03e4cd8f514b40630800000000000000
+      internalID: 3892433984417451568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_37
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 608
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3dd253f7d71a6f10800000000000000
+      internalID: 2263647978974797118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_38
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 448
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b64766d0e456d2c90800000000000000
+      internalID: -7192981643934141333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_39
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 440
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 232ba180af5233f30800000000000000
+      internalID: 4554025404009722418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_40
+      rect:
+        serializedVersion: 2
+        x: 993
+        y: 35
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e71c91b7bc837200800000000000000
+      internalID: 176639530984282081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_41
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 768
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8421e1cebfcc90c20800000000000000
+      internalID: 3173292794829476424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_42
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 752
+        width: 7
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dabe29f530568010800000000000000
+      internalID: 1190727344230152920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_43
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 736
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3d1c2c5b9b61c90800000000000000
+      internalID: -7199362763997457431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_44
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 671
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67c325c7124a639d0800000000000000
+      internalID: -2794866055010173834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_45
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 552
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e24036eac504b790800000000000000
+      internalID: -7515375509171059992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_46
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 544
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1229b51699d8cee90800000000000000
+      internalID: -6995060431310319071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_47
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 528
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17f23c882f592b270800000000000000
+      internalID: 8264833135087398769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_48
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 504
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7d10b4a880c0e050800000000000000
+      internalID: 5827869610928512379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_49
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 495
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dfe535fceef62420800000000000000
+      internalID: 2605049728160100309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_50
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 487
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3feb8c0f99970910800000000000000
+      internalID: 1803579084174520123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_51
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 480
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07f76464425ac0be0800000000000000
+      internalID: -1509650199859527824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_52
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 400
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e8611b5f52d2f780800000000000000
+      internalID: -8650620627233707801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_53
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 88
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed30bc6bfaee22b60800000000000000
+      internalID: 7719995149719897054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_54
+      rect:
+        serializedVersion: 2
+        x: 994
+        y: 56
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cf044e5be89ab790800000000000000
+      internalID: -7513524891647995959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_55
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 962
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79e3e43a047b38170800000000000000
+      internalID: 8179582836480556695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_56
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 952
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b190005640f3ce90800000000000000
+      internalID: -7006492410477768265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_57
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 896
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ed54c688c760c70800000000000000
+      internalID: 8936967435937242737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_58
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 859
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd2d8f3af5fa6090800000000000000
+      internalID: -8040343729559753296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_59
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 850
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 515df4b9373809260800000000000000
+      internalID: 7102321144913450261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_60
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 713
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af3b9f366cbb842c0800000000000000
+      internalID: -4447098171273137158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_61
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 707
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27e7363925c790620800000000000000
+      internalID: 2740858542333591154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_62
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 664
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d3f0106083931df0800000000000000
+      internalID: -210662577979460652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_63
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 539
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3301e675186dbee90800000000000000
+      internalID: -6995261745183977421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_64
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 520
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56f539e5eea54aed0800000000000000
+      internalID: -2403696321273569435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_65
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 456
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b026dde0511c5920800000000000000
+      internalID: 2980276092697714867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_66
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 410
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ab01572623f4630800000000000000
+      internalID: 3913401999660464658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_67
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 79
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 082aadbcc207cf870800000000000000
+      internalID: 8717966316383412864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_68
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 74
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60ab4ad6c5b2ac360800000000000000
+      internalID: 7190607431026915846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_69
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 10
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b9b6c8de3919c10800000000000000
+      internalID: 2058589153157421837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_70
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 855
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a99fce4ac0d5928c0800000000000000
+      internalID: -4023582483190842982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_71
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 799
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac19768081e7ed5b0800000000000000
+      internalID: -5341693466329509430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_72
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 775
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d470d1f1a5aebcd20800000000000000
+      internalID: 3299988824768972621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_73
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 767
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10f79016bc0f38e00800000000000000
+      internalID: 1045944294777126657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_74
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 743
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e77f26dde94c796e0800000000000000
+      internalID: -1830778536904689794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_75
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 735
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 693aaf54903c7cf30800000000000000
+      internalID: 4595856389351056278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_76
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 719
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 338257f3449d4e110800000000000000
+      internalID: 1289394280480450611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_77
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 711
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e1371abbc1149280800000000000000
+      internalID: -9037578985527627296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_78
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 703
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c83d8ba1ecaf12c00800000000000000
+      internalID: 874255565805114252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_79
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 693
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9414cbef78151bf0800000000000000
+      internalID: -354350057983306597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_80
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 679
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be6847a487b7e0b60800000000000000
+      internalID: 7714238968307681003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_81
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 655
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0caa7107a4467920800000000000000
+      internalID: 2987650886881946637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_82
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 647
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81542761a11ef0790800000000000000
+      internalID: -7561577747169786600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_83
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 639
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b06e352abe054b160800000000000000
+      internalID: 7040341090457871883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_84
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 567
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5057122e9c8afe40800000000000000
+      internalID: 5691015689940717661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_85
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 560
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf515161b0a73a20800000000000000
+      internalID: 3042076757014437815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_86
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 535
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a0fbe83f1e2e98f0800000000000000
+      internalID: -531936994349289303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_87
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 527
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54a90feb305b02a30800000000000000
+      internalID: 4188546681147529797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_88
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 495
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e248c412919cac80800000000000000
+      internalID: -8310107155805486363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_89
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 479
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f984c06589a42750800000000000000
+      internalID: 6279330170780551667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_90
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 471
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c656d76b9bdc2880800000000000000
+      internalID: -8634284925067569467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_91
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 447
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5e92387aa41917c0800000000000000
+      internalID: -4100223263350546851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_92
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 439
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 257b5bed309d88240800000000000000
+      internalID: 4794320413980473170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_93
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 407
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54508a2f7875a1db0800000000000000
+      internalID: -4820444209743395515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_94
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 93
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9e6a1f554953ec70800000000000000
+      internalID: 8999134634899566237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_95
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 71
+        width: 6
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bbbb3d1c9a106e30800000000000000
+      internalID: 4494621685923429297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_96
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 63
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ca17fbc9c1ca6a10800000000000000
+      internalID: 1903546864972012228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_97
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 45
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2b45d744bf6f42f0800000000000000
+      internalID: -986446973280892116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_98
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 39
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db16e1a229c6b9940800000000000000
+      internalID: 5303952361186550205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_99
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 31
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51361c19cff4889f0800000000000000
+      internalID: -466034615237123307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_100
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 23
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 554fe4e4170107880800000000000000
+      internalID: -8615368008328612779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_101
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 0
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658f78f8f61e8d400800000000000000
+      internalID: 349276840386885718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_102
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 520
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ef6fcae7e03948a0800000000000000
+      internalID: -6320466829402738719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_103
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 43
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 709d2aa30830d84a0800000000000000
+      internalID: -6589606830498719481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_104
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 571
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e50854e0e2185b0800000000000000
+      internalID: -5367958642018460068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_105
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 546
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 242b910433dd14d40800000000000000
+      internalID: 5566973826595140162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_106
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 554
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 078ecaeff6c1a3010800000000000000
+      internalID: 1169278320595757168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chat Bubble Long_107
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 539
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9bcf5cdc73741140800000000000000
+      internalID: 4689500092109933469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Chat Bubble Long_0: -3411172090549554358
+      Chat Bubble Long_1: -2042452142786429662
+      Chat Bubble Long_10: 9111751911144510667
+      Chat Bubble Long_100: -8615368008328612779
+      Chat Bubble Long_101: 349276840386885718
+      Chat Bubble Long_102: -6320466829402738719
+      Chat Bubble Long_103: -6589606830498719481
+      Chat Bubble Long_104: -5367958642018460068
+      Chat Bubble Long_105: 5566973826595140162
+      Chat Bubble Long_106: 1169278320595757168
+      Chat Bubble Long_107: 4689500092109933469
+      Chat Bubble Long_11: 2111916266902813638
+      Chat Bubble Long_12: 8475850489947729902
+      Chat Bubble Long_13: -5643298839858759778
+      Chat Bubble Long_14: -6932705953771580230
+      Chat Bubble Long_15: -3999294748203884906
+      Chat Bubble Long_16: 8530712099227847873
+      Chat Bubble Long_17: -6682335970168835511
+      Chat Bubble Long_18: 6855915886162272280
+      Chat Bubble Long_19: 8447773502724152834
+      Chat Bubble Long_2: 2826145954590388451
+      Chat Bubble Long_20: 7562914986937687792
+      Chat Bubble Long_21: 4384107865926487623
+      Chat Bubble Long_22: -6027905813118817086
+      Chat Bubble Long_23: 8450420740855831590
+      Chat Bubble Long_24: 2092385102471475264
+      Chat Bubble Long_25: -3106874762165072273
+      Chat Bubble Long_26: 6310705294988782728
+      Chat Bubble Long_27: 6412057411153505358
+      Chat Bubble Long_28: -8453175089703315477
+      Chat Bubble Long_29: 5262613646960791625
+      Chat Bubble Long_3: -3584359158086709671
+      Chat Bubble Long_30: 7902013005416935269
+      Chat Bubble Long_31: 3710468220581019484
+      Chat Bubble Long_32: -6374678245276447335
+      Chat Bubble Long_33: 1084895327389220497
+      Chat Bubble Long_34: -3540668543189021778
+      Chat Bubble Long_35: -6483870950078560834
+      Chat Bubble Long_36: 3892433984417451568
+      Chat Bubble Long_37: 2263647978974797118
+      Chat Bubble Long_38: -7192981643934141333
+      Chat Bubble Long_39: 4554025404009722418
+      Chat Bubble Long_4: 7714097785053100269
+      Chat Bubble Long_40: 176639530984282081
+      Chat Bubble Long_41: 3173292794829476424
+      Chat Bubble Long_42: 1190727344230152920
+      Chat Bubble Long_43: -7199362763997457431
+      Chat Bubble Long_44: -2794866055010173834
+      Chat Bubble Long_45: -7515375509171059992
+      Chat Bubble Long_46: -6995060431310319071
+      Chat Bubble Long_47: 8264833135087398769
+      Chat Bubble Long_48: 5827869610928512379
+      Chat Bubble Long_49: 2605049728160100309
+      Chat Bubble Long_5: -3883775095553541106
+      Chat Bubble Long_50: 1803579084174520123
+      Chat Bubble Long_51: -1509650199859527824
+      Chat Bubble Long_52: -8650620627233707801
+      Chat Bubble Long_53: 7719995149719897054
+      Chat Bubble Long_54: -7513524891647995959
+      Chat Bubble Long_55: 8179582836480556695
+      Chat Bubble Long_56: -7006492410477768265
+      Chat Bubble Long_57: 8936967435937242737
+      Chat Bubble Long_58: -8040343729559753296
+      Chat Bubble Long_59: 7102321144913450261
+      Chat Bubble Long_6: 4382652550587033814
+      Chat Bubble Long_60: -4447098171273137158
+      Chat Bubble Long_61: 2740858542333591154
+      Chat Bubble Long_62: -210662577979460652
+      Chat Bubble Long_63: -6995261745183977421
+      Chat Bubble Long_64: -2403696321273569435
+      Chat Bubble Long_65: 2980276092697714867
+      Chat Bubble Long_66: 3913401999660464658
+      Chat Bubble Long_67: 8717966316383412864
+      Chat Bubble Long_68: 7190607431026915846
+      Chat Bubble Long_69: 2058589153157421837
+      Chat Bubble Long_7: -5223738246110367450
+      Chat Bubble Long_70: -4023582483190842982
+      Chat Bubble Long_71: -5341693466329509430
+      Chat Bubble Long_72: 3299988824768972621
+      Chat Bubble Long_73: 1045944294777126657
+      Chat Bubble Long_74: -1830778536904689794
+      Chat Bubble Long_75: 4595856389351056278
+      Chat Bubble Long_76: 1289394280480450611
+      Chat Bubble Long_77: -9037578985527627296
+      Chat Bubble Long_78: 874255565805114252
+      Chat Bubble Long_79: -354350057983306597
+      Chat Bubble Long_8: -4811230066274459973
+      Chat Bubble Long_80: 7714238968307681003
+      Chat Bubble Long_81: 2987650886881946637
+      Chat Bubble Long_82: -7561577747169786600
+      Chat Bubble Long_83: 7040341090457871883
+      Chat Bubble Long_84: 5691015689940717661
+      Chat Bubble Long_85: 3042076757014437815
+      Chat Bubble Long_86: -531936994349289303
+      Chat Bubble Long_87: 4188546681147529797
+      Chat Bubble Long_88: -8310107155805486363
+      Chat Bubble Long_89: 6279330170780551667
+      Chat Bubble Long_9: -617257540348900583
+      Chat Bubble Long_90: -8634284925067569467
+      Chat Bubble Long_91: -4100223263350546851
+      Chat Bubble Long_92: 4794320413980473170
+      Chat Bubble Long_93: -4820444209743395515
+      Chat Bubble Long_94: 8999134634899566237
+      Chat Bubble Long_95: 4494621685923429297
+      Chat Bubble Long_96: 1903546864972012228
+      Chat Bubble Long_97: -986446973280892116
+      Chat Bubble Long_98: 5303952361186550205
+      Chat Bubble Long_99: -466034615237123307
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
