@@ -23,6 +23,7 @@ public class UICardGameManager : MonoBehaviour
 
     [Header("Victory Reward")]
     public Sprite coinRewardSprite;
+    public ItemData coinItemData;
 
     public UICard[] allCards;
     public Transform shuffleCenterPoint;
@@ -115,13 +116,11 @@ public class UICardGameManager : MonoBehaviour
             {
                 ResetAndCloseCardGame();
             }
-        }
 
-        if (activeDialogueCoroutine != null && targetDialogueGroup != null)
-        {
-            targetDialogueGroup.gameObject.SetActive(true);
-            targetDialogueGroup.alpha = 1.0f;
-            targetDialogueGroup.blocksRaycasts = true;
+            if (Keyboard.current != null && Keyboard.current.f12Key.wasPressedThisFrame)
+            {
+                WinGame();
+            }
         }
     }
 
@@ -416,6 +415,12 @@ public class UICardGameManager : MonoBehaviour
             targetDialogueGroup.alpha = 0.0f;
             targetDialogueGroup.blocksRaycasts = false;
             targetDialogueGroup.gameObject.SetActive(false);
+        }
+
+        ShinyInteractable tableScript = FindFirstObjectByType<ShinyInteractable>();
+        if (tableScript != null)
+        {
+            tableScript.enabled = true;
         }
     }
 
@@ -739,6 +744,13 @@ public class UICardGameManager : MonoBehaviour
         {
             NewItemPopup.Instance.ShowUnlockPopup(coinRewardSprite, "Golden Coin", "A shiny coin rewarded by Mr. Star Face. It is used to get the toys.");
         }
+
+        InventoryManager inventoryManager = FindFirstObjectByType<InventoryManager>();
+        if (inventoryManager != null && coinItemData != null)
+        {
+            inventoryManager.AddItem(coinItemData);
+        }
+
         CloseCardGame();
     }
 
