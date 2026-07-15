@@ -7,12 +7,10 @@ using UnityEngine.InputSystem;
 public class SoupPuzzleManager : MonoBehaviour
 {
     public GameObject soupCanvas;
-    public Image soupImage;
+    public Image soupFillImage;
     public Sprite[] soupSprites;
     public TMP_Text combinationText;
-
     public ItemData ratItemData;
-
     public AudioSource sfxSource;
     public AudioClip sfxSlurp;
     public AudioClip sfxSolve;
@@ -23,10 +21,7 @@ public class SoupPuzzleManager : MonoBehaviour
 
     void Start()
     {
-        if (soupCanvas != null)
-        {
-            soupCanvas.SetActive(false);
-        }
+        if (soupCanvas != null) soupCanvas.SetActive(false);
     }
 
     void Update()
@@ -57,87 +52,66 @@ public class SoupPuzzleManager : MonoBehaviour
             }
         }
 
-        if (!hasRat)
-        {
-            Debug.Log("I cannot eat this cold soup alone. I need my little companion to help me!");
-            return;
-        }
+        if (!hasRat) return;
 
-        if (soupCanvas != null)
-        {
-            soupCanvas.SetActive(true);
-        }
+        if (soupCanvas != null) soupCanvas.SetActive(true);
 
         isSolved = false;
         currentSoupState = 0;
 
-        if (soupSprites != null && soupSprites.Length > 0 && soupImage != null)
+        if (soupSprites != null && soupSprites.Length > 0 && soupFillImage != null)
         {
-            soupImage.sprite = soupSprites[0];
+            soupFillImage.sprite = soupSprites[0];
         }
 
-        if (combinationText != null)
-        {
-            combinationText.gameObject.SetActive(false);
-        }
+        if (combinationText != null) combinationText.gameObject.SetActive(false);
 
         GenerateRandomCombination();
     }
 
     void GenerateRandomCombination()
     {
-        int partOne = Random.Range(1, 10);
-        int partTwo = Random.Range(0, 10);
-        int partThree = Random.Range(0, 10);
-        int partFour = Random.Range(0, 10);
-
-        finalCodeCombination = partOne.ToString() + " " + partTwo.ToString() + " " + partThree.ToString() + " " + partFour.ToString();
+        finalCodeCombination = $"{Random.Range(1, 10)} {Random.Range(0, 10)} {Random.Range(0, 10)} {Random.Range(0, 10)}";
     }
 
-    public void OnSoupClicked()
+   public void OnSoupClicked()
+{
+    if (isSolved || soupSprites == null || soupFillImage == null) return;
+
+    if (currentSoupState < 3)
     {
-        if (isSolved || soupSprites == null || soupImage == null) return;
+        currentSoupState++;
+        soupFillImage.sprite = soupSprites[currentSoupState];
 
-        if (currentSoupState < 3)
+        // This makes the soup shrink to 75%, 50%, and 25% of its original size
+        float newScale = 1.0f - (currentSoupState * 0.25f);
+        soupFillImage.transform.localScale = new Vector3(newScale, newScale, 1f);
+
+        if (sfxSource != null && sfxSlurp != null)
         {
-            currentSoupState++;
-            soupImage.sprite = soupSprites[currentSoupState];
+            sfxSource.PlayOneShot(sfxSlurp);
+        }
 
-            if (sfxSource != null && sfxSlurp != null)
-            {
-                sfxSource.PlayOneShot(sfxSlurp);
-            }
-
-            if (currentSoupState == 3)
-            {
-                SolvePuzzle();
-            }
+        if (currentSoupState == 3)
+        {
+            SolvePuzzle();
         }
     }
+}
 
     void SolvePuzzle()
     {
         isSolved = true;
-
-        if (sfxSource != null && sfxSolve != null)
-        {
-            sfxSource.PlayOneShot(sfxSolve);
-        }
-
+        if (sfxSource != null && sfxSolve != null) sfxSource.PlayOneShot(sfxSolve);
         if (combinationText != null)
         {
             combinationText.text = finalCodeCombination;
             combinationText.gameObject.SetActive(true);
         }
-
-        Debug.Log("Soup successfully eaten! Code revealed: " + finalCodeCombination);
     }
 
     public void CloseSoupPuzzle()
     {
-        if (soupCanvas != null)
-        {
-            soupCanvas.SetActive(false);
-        }
+        if (soupCanvas != null) soupCanvas.SetActive(false);
     }
 }
