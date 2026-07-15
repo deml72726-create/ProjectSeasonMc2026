@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314db9f97005bdf41ab61be1fe9f0414, type: 3}
   m_Name: Hamster
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
-  itemID: 0
-  prefab: {fileID: 0}
+  itemName: Evil Rat
+  icon: {fileID: -8006324709221301831, guid: 02ebc44c95f424a408c15ebfae58926c, type: 3}
+  itemID: 2
+  prefab: {fileID: 6990464999544909512, guid: 7db982e5b397a2e40b843cefaff52610, type: 3}
