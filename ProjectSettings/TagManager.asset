@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Selectable
   - Sheep
+  - Floor
+  - Grass
   layers:
   - Default
   - TransparentFX
