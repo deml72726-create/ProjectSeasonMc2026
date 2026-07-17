@@ -2728,8 +2728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff82badc9d763c04eb30218d0a7c467f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraSway
-  swayAmount: 7
-  swaySpeed: 5
+  swayAmount: 0.5
+  swaySpeed: 10
 --- !u!114 &1442032756
 MonoBehaviour:
   m_ObjectHideFlags: 0

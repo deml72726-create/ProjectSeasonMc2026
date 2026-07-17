@@ -87,4 +87,7 @@ public class ShinyInteractable : MonoBehaviour
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
     }
+
+
+
 }

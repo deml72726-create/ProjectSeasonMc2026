@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 98978ef727949b6498ca05ab4a739cad
+guid: 88ae24771f602334395e13e3ad67e831
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8894378161134838276
-    second: Bg_0
+      213: 3031437920877139875
+    second: keey_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bg_0
+      name: keey_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 13
         y: 0
-        width: 1725
-        height: 1080
+        width: 1492
+        height: 1024
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 208, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cfdd097df22d09480800000000000000
-      internalID: -8894378161134838276
+      spriteID: 3a7d7805ab4d11a20800000000000000
+      internalID: 3031437920877139875
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: d4a7d0d151255394db52e48f8138e648
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -133,11 +133,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Bg_0: -8894378161134838276
+      keey_0: 3031437920877139875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

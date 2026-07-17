@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public ItemData itemData; 
+    public ItemData itemData;
 
+    [System.Obsolete]
     public void PickUp(Transform handSlot)
     {
         Debug.Log("DEBUG: PickUp triggered for " + itemData.itemName);
@@ -25,6 +26,7 @@ public class ItemPickup : MonoBehaviour
         if (GetComponent<Rigidbody2D>()) GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
     }
 
+    [System.Obsolete]
     public void Drop()
     {
         Debug.Log("DEBUG: Drop triggered for " + itemData.itemName);
