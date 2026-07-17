@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 314db9f97005bdf41ab61be1fe9f0414, type: 3}
   m_Name: card
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  icon: {fileID: 0}
-  itemID: 0
-  prefab: {fileID: 0}
+  itemName: card
+  icon: {fileID: 5000927251509650613, guid: f391e0ad69d28224ab810d90b09d5a56, type: 3}
+  itemID: 2008
+  prefab: {fileID: 3947623364778604405, guid: 5495a261bdfd1ef429b5a334d49c5312, type: 3}

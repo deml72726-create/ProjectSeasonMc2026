@@ -14124,7 +14124,7 @@ GameObject:
   m_Component:
   - component: {fileID: 894539580}
   m_Layer: 0
-  m_Name: Hand
+  m_Name: HandSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26216,6 +26216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47805118ef6f69c4bb92a16c393a77b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICardGameManager
+  cardTicketItem: {fileID: 11400000, guid: e7345555386282042b6d95795cb7d96f, type: 2}
   toyRewardPrefab: {fileID: 0}
   rewardSpawnPoint: {fileID: 0}
   missingCardButton: {fileID: 5626464199687050956}
