@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2799917182664780813}
   - component: {fileID: 2428368341652788728}
   - component: {fileID: 8668749075031167258}
-  - component: {fileID: 7769612424710887106}
   - component: {fileID: 6712947255661286664}
   - component: {fileID: 3140199656448153029}
+  - component: {fileID: 6078207375375306585}
   m_Layer: 0
   m_Name: CARD
   m_TagString: Untagged
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3947623364778604405}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.66372555, w: 0.74797624}
-  m_LocalPosition: {x: -15.927452, y: -1.8243876, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.6637239, w: 0.7479777}
+  m_LocalPosition: {x: -115.38683, y: 9.764878, z: 0}
   m_LocalScale: {x: 0.4583065, y: 0.4583065, z: 0.4583065}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125,20 +125,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7769612424710887106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3947623364778604405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba5f68a703e829e44acd827b983d6080, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CardPickup
-  cardGameManager: {fileID: 0}
-  cardItemSprite: {fileID: 5000927251509650613, guid: f391e0ad69d28224ab810d90b09d5a56, type: 3}
 --- !u!114 &6712947255661286664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,3 +190,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.462883, y: 5.4133224}
   m_EdgeRadius: 0
+--- !u!114 &6078207375375306585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3947623364778604405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe84e4928e40024c9f5edc893be354a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
+  itemData: {fileID: 11400000, guid: e7345555386282042b6d95795cb7d96f, type: 2}
