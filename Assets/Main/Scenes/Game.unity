@@ -19241,7 +19241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &1364283260
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -23668,7 +23668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1862632250
 Transform:
   m_ObjectHideFlags: 0
@@ -26217,8 +26217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UICardGameManager
   cardTicketItem: {fileID: 11400000, guid: e7345555386282042b6d95795cb7d96f, type: 2}
-  toyRewardPrefab: {fileID: 0}
-  rewardSpawnPoint: {fileID: 0}
+  toyRewardPrefab: {fileID: 6885711940302121772, guid: b6081a646e6d4bf479df1d9625c5a4dd, type: 3}
+  rewardSpawnPoint: {fileID: 67723267}
   missingCardButton: {fileID: 5626464199687050956}
   cardGameCanvas: {fileID: 7784230575286112586}
   anxietyVignette: {fileID: 6353177555906676540}

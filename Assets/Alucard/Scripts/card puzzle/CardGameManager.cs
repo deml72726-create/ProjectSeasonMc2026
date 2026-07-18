@@ -785,15 +785,29 @@ public class UICardGameManager : MonoBehaviour
     {
         if (NewItemPopup.Instance != null && coinRewardSprite != null)
         {
-            NewItemPopup.Instance.ShowUnlockPopup(coinRewardSprite, "Golden Coin", "A shiny coin rewarded by Mr. Star Face. It is used to get the toys.");
+            NewItemPopup.Instance.ShowUnlockPopup(coinRewardSprite, "Golden Coin", "A shiny coin rewarded by Mr. Star Face.");
         }
 
-        InventoryManager inventoryManager = FindFirstObjectByType<InventoryManager>();
-        if (inventoryManager != null && coinItemData != null)
+        if (toyRewardPrefab != null && rewardSpawnPoint != null)
         {
-            inventoryManager.AddItem(coinItemData);
+            // Spawn the item
+            GameObject droppedItem = Instantiate(toyRewardPrefab, rewardSpawnPoint.position, Quaternion.identity);
+            
+            // IMPORTANT: Ensure the prefab is active and enabled
+            droppedItem.SetActive(true);
+            
+            ItemPickup pickup = droppedItem.GetComponent<ItemPickup>();
+            if (pickup != null)
+            {
+                pickup.itemData = coinItemData;
+                
+                // Force-enable the collider so you can actually walk into it to pick it up
+                Collider2D col = droppedItem.GetComponent<Collider2D>();
+                if (col != null) col.enabled = true;
+            }
         }
-        hasUnlockedGame = false; // Add this if you want to force the player to find a new ticket after winning
+
+        hasUnlockedGame = false; 
         CloseCardGame();
     }
 
