@@ -1301,9 +1301,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerRb: {fileID: 602544761}
   speed: 4.07
-  spriteRenderer: {fileID: 84537644}
   handSlot: {fileID: 0}
   invManager: {fileID: 0}
+  audioSource: {fileID: 0}
+  floorClip: {fileID: 0}
+  grassClip: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  rayDistance: 5
+  timeBetweenSteps: 0.5
 --- !u!50 &602544761
 Rigidbody2D:
   serializedVersion: 5
@@ -2186,7 +2193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792126815}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3459,8 +3466,8 @@ SceneRoots:
   - {fileID: 1290765509}
   - {fileID: 602544763}
   - {fileID: 165011996}
-  - {fileID: 792126818}
   - {fileID: 1306628448}
   - {fileID: 494408881}
+  - {fileID: 792126818}
   - {fileID: 1789090957}
   - {fileID: 1920864469}

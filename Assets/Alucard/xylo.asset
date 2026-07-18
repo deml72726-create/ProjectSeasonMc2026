@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314db9f97005bdf41ab61be1fe9f0414, type: 3}
+  m_Name: xylo
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: xylophone
+  icon: {fileID: -4223778289920576091, guid: 5857872780497844b8131a44f48097c1, type: 3}
+  itemID: 9898
+  prefab: {fileID: 4941373177940815225, guid: 4974b6cb181757744bddaa51b7123f04, type: 3}

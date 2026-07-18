@@ -1537,9 +1537,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerRb: {fileID: 2069433558}
   speed: 4.07
-  spriteRenderer: {fileID: 346496747}
   handSlot: {fileID: 0}
   invManager: {fileID: 0}
+  audioSource: {fileID: 0}
+  floorClip: {fileID: 0}
+  grassClip: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  rayDistance: 5
+  timeBetweenSteps: 0.5
 --- !u!50 &2069433558
 Rigidbody2D:
   serializedVersion: 5
