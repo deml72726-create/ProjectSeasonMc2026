@@ -12991,7 +12991,7 @@ MonoBehaviour:
   - {fileID: 8952795574705507546, guid: 11cad167a37b1e24e8cfdde069d668dc, type: 3}
   - {fileID: 6610176244541911201, guid: 733211c408d113840b6dd9db35007803, type: 3}
   combinationText: {fileID: 486430029}
-  ratItemData: {fileID: 11400000, guid: df4a9a778e2d02443a2523e2bbc9ce94, type: 2}
+  hamsterItemData: {fileID: 11400000, guid: df4a9a778e2d02443a2523e2bbc9ce94, type: 2}
   sfxSource: {fileID: 0}
   sfxSlurp: {fileID: 0}
   sfxSolve: {fileID: 0}
