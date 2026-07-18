@@ -7,7 +7,7 @@ using TMPro;
 public class UICardGameManager : MonoBehaviour
 {
     public static UICardGameManager Instance;
-
+    public ItemData cardTicketItem; 
     public GameObject toyRewardPrefab;
     public Transform rewardSpawnPoint;
     public GameObject missingCardButton;
@@ -29,7 +29,7 @@ public class UICardGameManager : MonoBehaviour
     public Transform shuffleCenterPoint;
     public float dealSpeed = 8.0f;
     private Vector3[] targetPositions;
-
+    private bool hasUnlockedGame = false;
     public AudioSource sfxSource;
     public AudioSource ambientSource;
     public AudioSource starFaceSource;
@@ -365,32 +365,63 @@ public class UICardGameManager : MonoBehaviour
         cardTransform.localPosition = destination;
         cardTransform.localRotation = targetRotation;
     }
-
     public void OpenCardGame()
     {
-        if (missingCardButton != null && !missingCardButton.activeSelf)
+    InventoryManager inv = FindFirstObjectByType<InventoryManager>();
+    bool hasTicket = inv != null && inv.inventory.Contains(cardTicketItem);
+
+    if (!hasUnlockedGame)
+    {
+        if (hasTicket)
         {
+            inv.RemoveItem(cardTicketItem);
+            
+            InventoryUI invUI = FindObjectOfType<InventoryUI>();
+            if (invUI != null) invUI.UpdateUI();
+
+            // SAFELY find the hand slot
+            // Instead of Find("HandSlot"), look for the player or a known reference
+            GameObject handObj = GameObject.Find("HandSlot"); 
+            
+            if (handObj != null)
+            {
+                foreach (Transform child in handObj.transform)
+                {
+                    ItemPickup pickup = child.GetComponent<ItemPickup>();
+                    if (pickup != null && pickup.itemData == cardTicketItem)
+                    {
+                        Destroy(child.gameObject);
+                        break; // Stop after destroying the correct item
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogError("Could not find 'HandSlot'! Check the name in Hierarchy.");
+            }
+            
+            hasUnlockedGame = true;
+        }
+        else
+        {
+            Debug.Log("Need a ticket!");
             return;
         }
-
-        isPlayingCardGame = true;
-
-        if (cardGameCanvas != null)
-        {
-            cardGameCanvas.SetActive(true);
-        }
-
-        if (ambientSource != null && ambientGothic != null)
-        {
-            ambientSource.clip = ambientGothic;
-            ambientSource.loop = true;
-            ambientSource.Play();
-        }
-
-        currentRound = 1;
-        StartRound();
     }
 
+    isPlayingCardGame = true;
+    if (cardGameCanvas != null) cardGameCanvas.SetActive(true);
+    
+    if (ambientSource != null && ambientGothic != null)
+    {
+        ambientSource.clip = ambientGothic;
+        ambientSource.loop = true;
+        ambientSource.Play();
+    }
+    
+    currentRound = 1;
+    StartRound();
+    }
     public void CloseCardGame()
     {
         isPlayingCardGame = false;
@@ -417,11 +448,23 @@ public class UICardGameManager : MonoBehaviour
             targetDialogueGroup.gameObject.SetActive(false);
         }
 
+        // Reset variables so the game can be re-entered
+        StopAllCoroutines();
+        firstCard = null;
+        secondCard = null;
+        canFlip = false;
+        matchesFound = 0;
+        correctStreak = 0;
+
         ShinyInteractable tableScript = FindFirstObjectByType<ShinyInteractable>();
         if (tableScript != null)
         {
             tableScript.enabled = true;
         }
+        
+        // Ensure cursor is returned to game state
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void ResetAndCloseCardGame()
@@ -742,15 +785,29 @@ public class UICardGameManager : MonoBehaviour
     {
         if (NewItemPopup.Instance != null && coinRewardSprite != null)
         {
-            NewItemPopup.Instance.ShowUnlockPopup(coinRewardSprite, "Golden Coin", "A shiny coin rewarded by Mr. Star Face. It is used to get the toys.");
+            NewItemPopup.Instance.ShowUnlockPopup(coinRewardSprite, "Golden Coin", "A shiny coin rewarded by Mr. Star Face.");
         }
 
-        InventoryManager inventoryManager = FindFirstObjectByType<InventoryManager>();
-        if (inventoryManager != null && coinItemData != null)
+        if (toyRewardPrefab != null && rewardSpawnPoint != null)
         {
-            inventoryManager.AddItem(coinItemData);
+            // Spawn the item
+            GameObject droppedItem = Instantiate(toyRewardPrefab, rewardSpawnPoint.position, Quaternion.identity);
+            
+            // IMPORTANT: Ensure the prefab is active and enabled
+            droppedItem.SetActive(true);
+            
+            ItemPickup pickup = droppedItem.GetComponent<ItemPickup>();
+            if (pickup != null)
+            {
+                pickup.itemData = coinItemData;
+                
+                // Force-enable the collider so you can actually walk into it to pick it up
+                Collider2D col = droppedItem.GetComponent<Collider2D>();
+                if (col != null) col.enabled = true;
+            }
         }
 
+        hasUnlockedGame = false; 
         CloseCardGame();
     }
 

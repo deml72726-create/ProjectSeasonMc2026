@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class WhackGameManager : MonoBehaviour
 {
@@ -27,58 +28,67 @@ public class WhackGameManager : MonoBehaviour
 
     private int evilWhackedCount = 0;
     private bool isGamePlaying = false;
+    private bool hasUnlockedWhack = false;
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     void Start()
     {
-        if (gameCanvas != null)
+        if (gameCanvas != null) gameCanvas.SetActive(false);
+    }
+
+    void Update()
+    {
+        if (isGamePlaying && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            gameCanvas.SetActive(false);
+            CloseGame();
         }
     }
 
     public void StartGame()
     {
-        InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
-        if (inventoryManager != null && coinItemData != null)
+        if (!hasUnlockedWhack)
         {
-            bool hasCoin = false;
-            foreach (ItemData item in inventoryManager.inventory)
+            InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
+            if (inventoryManager != null && coinItemData != null)
             {
-                if (item == coinItemData)
+                if (!inventoryManager.inventory.Contains(coinItemData))
                 {
-                    hasCoin = true;
-                    break;
+                    Debug.Log("The machine is locked. It needs a coin to play!");
+                    return;
                 }
-            }
 
-            if (!hasCoin)
-            {
-                Debug.Log("The machine is locked. It needs a coin to play!");
-                return;
-            }
+                inventoryManager.RemoveItem(coinItemData);
+                FindObjectOfType<InventoryUI>().UpdateUI();
 
-            inventoryManager.RemoveItem(coinItemData);
+                GameObject handObj = GameObject.Find("HandSlot");
+                if (handObj != null)
+                {
+                    foreach (Transform child in handObj.transform)
+                    {
+                        ItemPickup pickup = child.GetComponent<ItemPickup>();
+                        if (pickup != null && pickup.itemData == coinItemData)
+                        {
+                            Destroy(child.gameObject);
+                            break;
+                        }
+                    }
+                }
+                hasUnlockedWhack = true;
+            }
         }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         evilWhackedCount = 0;
         UpdateScoreText();
         
-        if (gameCanvas != null)
-        {
-            gameCanvas.SetActive(true);
-        }
+        if (gameCanvas != null) gameCanvas.SetActive(true);
 
         isGamePlaying = true;
         StartCoroutine(SpawnSequence());
@@ -89,10 +99,13 @@ public class WhackGameManager : MonoBehaviour
         isGamePlaying = false;
         StopAllCoroutines();
 
-        if (gameCanvas != null)
-        {
-            gameCanvas.SetActive(false);
-        }
+        evilWhackedCount = 0;
+        if (anxietyVignette != null) anxietyVignette.alpha = 0f;
+
+        if (gameCanvas != null) gameCanvas.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     IEnumerator SpawnSequence()
@@ -120,29 +133,18 @@ public class WhackGameManager : MonoBehaviour
 
         if (isEvil)
         {
-            if (sfxSource != null && sfxHitEvil != null)
-            {
-                sfxSource.PlayOneShot(sfxHitEvil);
-            }
+            if (sfxSource != null && sfxHitEvil != null) sfxSource.PlayOneShot(sfxHitEvil);
 
             evilWhackedCount++;
             UpdateScoreText();
 
-            if (evilWhackedCount >= evilWhackedNeeded)
-            {
-                WinGame();
-            }
+            if (evilWhackedCount >= evilWhackedNeeded) WinGame();
         }
         else
         {
-            if (sfxSource != null && sfxHitCute != null)
-            {
-                sfxSource.PlayOneShot(sfxHitCute);
-            }
-
+            if (sfxSource != null && sfxHitCute != null) sfxSource.PlayOneShot(sfxHitCute);
             evilWhackedCount = 0;
             UpdateScoreText();
-
             StartCoroutine(ScreenShakeEffect());
             IncreaseAnxietyVignette();
         }
@@ -150,18 +152,12 @@ public class WhackGameManager : MonoBehaviour
 
     void UpdateScoreText()
     {
-        if (scoreText != null)
-        {
-            scoreText.text = "Eliminated: " + evilWhackedCount + " / " + evilWhackedNeeded;
-        }
+        if (scoreText != null) scoreText.text = "Eliminated: " + evilWhackedCount + " / " + evilWhackedNeeded;
     }
 
     void IncreaseAnxietyVignette()
     {
-        if (anxietyVignette != null)
-        {
-            anxietyVignette.alpha = Mathf.Min(0.8f, anxietyVignette.alpha + 0.15f);
-        }
+        if (anxietyVignette != null) anxietyVignette.alpha = Mathf.Min(0.8f, anxietyVignette.alpha + 0.15f);
     }
 
     IEnumerator ScreenShakeEffect()
@@ -179,7 +175,6 @@ public class WhackGameManager : MonoBehaviour
             gameCanvas.transform.localPosition = new Vector3(originalPos.x + x, originalPos.y + y, originalPos.z);
             yield return null;
         }
-
         gameCanvas.transform.localPosition = originalPos;
     }
 
@@ -187,16 +182,10 @@ public class WhackGameManager : MonoBehaviour
     {
         isGamePlaying = false;
         StopAllCoroutines();
+        hasUnlockedWhack = false;
 
-        if (computerCollider != null)
-        {
-            computerCollider.enabled = false;
-        }
-
-        if (computerInteractScript != null)
-        {
-            computerInteractScript.enabled = false;
-        }
+        if (computerCollider != null) computerCollider.enabled = false;
+        if (computerInteractScript != null) computerInteractScript.enabled = false;
 
         if (NewItemPopup.Instance != null && hamsterItemData != null)
         {
@@ -204,10 +193,7 @@ public class WhackGameManager : MonoBehaviour
         }
 
         InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
-        if (inventoryManager != null && hamsterItemData != null)
-        {
-            inventoryManager.AddItem(hamsterItemData);
-        }
+        if (inventoryManager != null && hamsterItemData != null) inventoryManager.AddItem(hamsterItemData);
 
         CloseGame();
     }

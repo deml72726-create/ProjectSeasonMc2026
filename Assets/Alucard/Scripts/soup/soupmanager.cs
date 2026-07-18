@@ -10,7 +10,7 @@ public class SoupPuzzleManager : MonoBehaviour
     public Image soupFillImage;
     public Sprite[] soupSprites;
     public TMP_Text combinationText;
-    public ItemData ratItemData;
+    public ItemData hamsterItemData; // Renamed for clarity
     public AudioSource sfxSource;
     public AudioClip sfxSlurp;
     public AudioClip sfxSolve;
@@ -22,6 +22,7 @@ public class SoupPuzzleManager : MonoBehaviour
     void Start()
     {
         if (soupCanvas != null) soupCanvas.SetActive(false);
+        if (soupFillImage != null) soupFillImage.transform.localScale = Vector3.one;
     }
 
     void Update()
@@ -38,21 +39,21 @@ public class SoupPuzzleManager : MonoBehaviour
     public void OpenSoupPuzzle()
     {
         InventoryManager inventoryManager = FindFirstObjectByType<InventoryManager>();
-        bool hasRat = false;
+        bool hasHamster = false;
 
-        if (inventoryManager != null && ratItemData != null)
+        if (inventoryManager != null && hamsterItemData != null)
         {
-            for (int i = 0; i < inventoryManager.inventory.Count; i++)
+            if (inventoryManager.inventory.Contains(hamsterItemData))
             {
-                if (inventoryManager.inventory[i] == ratItemData)
-                {
-                    hasRat = true;
-                    break;
-                }
+                hasHamster = true;
             }
         }
 
-        if (!hasRat) return;
+        if (!hasHamster)
+        {
+            Debug.Log("I need my hamster companion to eat this soup!");
+            return;
+        }
 
         if (soupCanvas != null) soupCanvas.SetActive(true);
 
@@ -62,11 +63,15 @@ public class SoupPuzzleManager : MonoBehaviour
         if (soupSprites != null && soupSprites.Length > 0 && soupFillImage != null)
         {
             soupFillImage.sprite = soupSprites[0];
+            soupFillImage.transform.localScale = Vector3.one;
         }
 
         if (combinationText != null) combinationText.gameObject.SetActive(false);
 
         GenerateRandomCombination();
+        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     void GenerateRandomCombination()
@@ -74,35 +79,37 @@ public class SoupPuzzleManager : MonoBehaviour
         finalCodeCombination = $"{Random.Range(1, 10)} {Random.Range(0, 10)} {Random.Range(0, 10)} {Random.Range(0, 10)}";
     }
 
-   public void OnSoupClicked()
-{
-    if (isSolved || soupSprites == null || soupFillImage == null) return;
-
-    if (currentSoupState < 3)
+    public void OnSoupClicked()
     {
-        currentSoupState++;
-        soupFillImage.sprite = soupSprites[currentSoupState];
+        if (isSolved || soupSprites == null || soupFillImage == null) return;
 
-        // This makes the soup shrink to 75%, 50%, and 25% of its original size
-        float newScale = 1.0f - (currentSoupState * 0.25f);
-        soupFillImage.transform.localScale = new Vector3(newScale, newScale, 1f);
-
-        if (sfxSource != null && sfxSlurp != null)
+        if (currentSoupState < 3)
         {
-            sfxSource.PlayOneShot(sfxSlurp);
-        }
+            currentSoupState++;
+            soupFillImage.sprite = soupSprites[currentSoupState];
 
-        if (currentSoupState == 3)
-        {
-            SolvePuzzle();
+            float newScale = 1.0f - (currentSoupState * 0.25f);
+            soupFillImage.transform.localScale = new Vector3(newScale, newScale, 1f);
+
+            if (sfxSource != null && sfxSlurp != null)
+            {
+                sfxSource.PlayOneShot(sfxSlurp);
+            }
+
+            if (currentSoupState == 3)
+            {
+                SolvePuzzle();
+            }
         }
     }
-}
 
     void SolvePuzzle()
     {
         isSolved = true;
-        if (sfxSource != null && sfxSolve != null) sfxSource.PlayOneShot(sfxSolve);
+        if (sfxSource != null && sfxSolve != null)
+        {
+            sfxSource.PlayOneShot(sfxSolve);
+        }
         if (combinationText != null)
         {
             combinationText.text = finalCodeCombination;
@@ -113,5 +120,7 @@ public class SoupPuzzleManager : MonoBehaviour
     public void CloseSoupPuzzle()
     {
         if (soupCanvas != null) soupCanvas.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
