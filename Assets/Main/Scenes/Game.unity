@@ -17306,6 +17306,11 @@ MonoBehaviour:
   mainCameraComponent: {fileID: 1024537321}
   playerMovementScript: {fileID: 2089573051}
   birdAnimator: {fileID: 1024940802}
+  melodyVfxPrefabs:
+  - {fileID: 8013427365278591643, guid: a7c4c03ab63474647b1dd9585c69e4ac, type: 3}
+  - {fileID: 8013427365278591643, guid: 54b210d70bf55574187d5c498ee438ec, type: 3}
+  - {fileID: 8013427365278591643, guid: a92826f7fcaedd549ab736ca9d897ed9, type: 3}
+  - {fileID: 8013427365278591643, guid: 12f8b42670d6cec48835cad1bc9c7870, type: 3}
   zoomOrthographicSize: 3
   fadeDuration: 1
   CanCloseTab: 0
@@ -18503,6 +18508,7 @@ MonoBehaviour:
   mainCameraComponent: {fileID: 0}
   playerMovementScript: {fileID: 0}
   birdAnimator: {fileID: 0}
+  melodyVfxPrefabs: []
   zoomOrthographicSize: 3
   fadeDuration: 2
   CanCloseTab: 0
