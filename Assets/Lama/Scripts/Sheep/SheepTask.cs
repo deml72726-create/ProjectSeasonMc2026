@@ -28,7 +28,7 @@ public class GameManagerSheep : MonoBehaviour
     public bool isGameActive = false;
     public bool hasWon = false;
     public bool hasLost = false;
-    public bool isPermanentlyWon = false; // <--- ADDED THIS: Tracks permanent victory
+    public bool isPermanentlyWon = false; 
     public AudioSource wind;
 
     [Header("Dialogue Content")]
@@ -61,7 +61,7 @@ public class GameManagerSheep : MonoBehaviour
 
     public void ReceiveCloneNumber(int incomingNumber)
     {
-        if (isPermanentlyWon) return; // Ignore input if already won
+        if (isPermanentlyWon) return; 
 
         if (incomingNumber == correctTargetNumber)
             hasWon = true;
@@ -71,7 +71,7 @@ public class GameManagerSheep : MonoBehaviour
 
     public void OnWindowClicked()
     { 
-        if (isPermanentlyWon) return; // Do nothing if already won
+        if (isPermanentlyWon) return; 
 
         hasWon = false;
         hasLost = false;
@@ -83,6 +83,10 @@ public class GameManagerSheep : MonoBehaviour
         desactivatemovement(false);
         FadeOut();
         yield return new WaitForSeconds(fadeDuration);
+
+        // Turn on Cursor for overlay
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         EnableSecondCamera();
         FadeIn();
@@ -97,7 +101,7 @@ public class GameManagerSheep : MonoBehaviour
 
         if (hasWon) 
         {
-            isPermanentlyWon = true; // <--- SET TO TRUE
+            isPermanentlyWon = true; 
             DialogueManager.Instance.StartDialogue(winDialogueLines);
             if (itemToDrop != null && dropLocation != null)
                 Instantiate(itemToDrop, dropLocation.position, Quaternion.identity);
@@ -120,6 +124,10 @@ public class GameManagerSheep : MonoBehaviour
         EnableMainCamera();
         desactivatemovement(true);
         FadeIn();
+
+        // Turn off Cursor on exit
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void ExitGameToMain()
@@ -132,6 +140,10 @@ public class GameManagerSheep : MonoBehaviour
         EnableMainCamera();
         desactivatemovement(true);
         FadeIn();
+
+        // Ensure cursor is hidden/locked when hard exiting via ESC
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void ShowCurtains() 

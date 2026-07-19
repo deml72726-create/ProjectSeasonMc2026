@@ -8,26 +8,34 @@ public class DialogueManager : MonoBehaviour
     
     public CanvasGroup bubbleCanvasGroup;
     public TMP_Text bubbleText;
-    public float textSpeed = 0.05f; // Adjust for typing speed
+    public float textSpeed = 0.05f;
     
     private string[] currentLines;
     private int index;
     private bool isTyping;
+    private Coroutine typingCoroutine;
 
-    void Awake() { Instance = this; }
+    void Awake() 
+    { 
+        Instance = this; 
+    }
 
-    void Start() { bubbleCanvasGroup.alpha = 0; }
+    void Start() 
+    { 
+        bubbleCanvasGroup.alpha = 0; 
+    }
 
     void Update()
     {
-        // Skip current line if X is pressed
         if (Input.GetKeyDown(KeyCode.X) && isTyping)
         {
-            StopAllCoroutines();
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
             bubbleText.text = currentLines[index];
             isTyping = false;
         }
-        // Move to next line if X is pressed and typing is finished
         else if (Input.GetKeyDown(KeyCode.X) && !isTyping && bubbleCanvasGroup.alpha > 0)
         {
             NextLine();
@@ -36,18 +44,22 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(string[] lines)
     {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+        
         currentLines = lines;
         index = 0;
         bubbleCanvasGroup.alpha = 1;
-        StartCoroutine(TypeLine());
+        typingCoroutine = StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine()
     {
         isTyping = true;
-        bubbleText.text = ""; // Clear existing text
+        bubbleText.text = "";
         
-        // Typewriter effect
         foreach (char c in currentLines[index].ToCharArray())
         {
             bubbleText.text += c;
@@ -62,11 +74,15 @@ public class DialogueManager : MonoBehaviour
         if (index < currentLines.Length - 1)
         {
             index++;
-            StartCoroutine(TypeLine());
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(typingCoroutine);
+            }
+            typingCoroutine = StartCoroutine(TypeLine());
         }
         else
         {
-            bubbleCanvasGroup.alpha = 0; // End of dialogue
+            bubbleCanvasGroup.alpha = 0;
         }
     }
 }

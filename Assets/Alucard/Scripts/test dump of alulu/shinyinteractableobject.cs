@@ -23,7 +23,11 @@ public class ShinyInteractable : MonoBehaviour
     void Start()
     {
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
-        defaultMaterial = spriteRenderer.material;
+        
+        if (spriteRenderer != null)
+        {
+            defaultMaterial = spriteRenderer.material;
+        }
 
         if (bubbleCanvasGroup != null)
         {
@@ -36,11 +40,15 @@ public class ShinyInteractable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Update the text specifically when entering the trigger
-            if (bubbleText != null) bubbleText.text = interactionMessage;
+            if (bubbleText != null) 
+            {
+                bubbleText.text = interactionMessage;
+            }
 
             if (spriteRenderer != null && outlineMaterial != null)
+            {
                 spriteRenderer.material = outlineMaterial;
+            }
 
             if (isBubbleEnabled && bubbleCanvasGroup != null)
             {
@@ -54,8 +62,10 @@ public class ShinyInteractable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (spriteRenderer != null)
+            if (spriteRenderer != null && defaultMaterial != null)
+            {
                 spriteRenderer.material = defaultMaterial;
+            }
 
             if (isBubbleEnabled && bubbleCanvasGroup != null)
             {
@@ -87,7 +97,4 @@ public class ShinyInteractable : MonoBehaviour
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
     }
-
-
-
 }

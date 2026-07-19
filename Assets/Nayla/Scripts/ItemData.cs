@@ -6,5 +6,6 @@ public class ItemData : ScriptableObject
     public string itemName;
     public Sprite icon;
     public int itemID;
-    public GameObject prefab; // This is crucial for equipping!
+    public GameObject prefab;
+    public string description;
 }

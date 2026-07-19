@@ -14,11 +14,14 @@ public class DrawerLock : MonoBehaviour
     public PlayerMovement playerMovement;
 
     public AudioSource sfxSource;
+    public AudioClip clickClip;
     public AudioClip buzzerClip;
     public AudioClip unlockClip;
 
     public ItemData xylophoneItemData;
     public Button xylophoneButton;
+
+    public GameObject xylophonePlacerObject;
 
     private string currentInput = "";
     private bool isUnlocked = false;
@@ -30,6 +33,17 @@ public class DrawerLock : MonoBehaviour
         {
             xylophoneButton.onClick.AddListener(CollectXylophone);
         }
+
+        if (sfxSource == null)
+        {
+            sfxSource = GetComponent<AudioSource>();
+        }
+        if (sfxSource == null)
+        {
+            sfxSource = gameObject.AddComponent<AudioSource>();
+        }
+        
+        sfxSource.spatialBlend = 0f;
     }
 
     void Update()
@@ -75,6 +89,11 @@ public class DrawerLock : MonoBehaviour
     {
         if (isProcessing || currentInput.Length >= 4) return;
 
+        if (sfxSource != null && clickClip != null)
+        {
+            sfxSource.PlayOneShot(clickClip);
+        }
+
         currentInput += number.ToString();
         UpdateDisplayVisuals();
 
@@ -99,6 +118,12 @@ public class DrawerLock : MonoBehaviour
     public void ClearInput()
     {
         if (isProcessing) return;
+
+        if (sfxSource != null && clickClip != null)
+        {
+            sfxSource.PlayOneShot(clickClip);
+        }
+
         currentInput = "";
         UpdateDisplayVisuals();
     }
@@ -147,6 +172,11 @@ public class DrawerLock : MonoBehaviour
         if (inventoryManager != null && xylophoneItemData != null)
         {
             inventoryManager.AddItem(xylophoneItemData);
+        }
+
+        if (xylophonePlacerObject != null)
+        {
+            xylophonePlacerObject.SetActive(true);
         }
 
         if (keypadCanvas != null)

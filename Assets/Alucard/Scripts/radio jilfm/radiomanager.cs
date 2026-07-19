@@ -1,8 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class radiomanager : MonoBehaviour
 {
@@ -10,8 +10,8 @@ public class radiomanager : MonoBehaviour
     public RadioKnob volumeKnob;
     public RectTransform tuningNeedle;
 
-    public float needleMinX = 200.0f;
-    public float needleMaxX = 200.0f;
+    public float needleMinX = -240.0f;
+    public float needleMaxX = 286.0f;
 
     public Button[] bandButtons;
     public int targetBandIndex = 1;
@@ -30,11 +30,23 @@ public class radiomanager : MonoBehaviour
     public TMP_Text debugText;
     public string targetDecodedMessage = "They are burning up in the sun. Do not leave the house until dark.";
 
-    private int activeBandIndex = 0;
-    private float currentFrequency = 0.5f;
-    private float currentVolume = 0.5f;
-    private bool isSolved = false;
+    public ItemData radioKnobItemData;
+    public GameObject tuningKnobVisual;
 
+    public GameObject mrStarFaceObject;
+    public GameObject objectToEnable;
+
+    public TMP_Text wallClueText;
+    public PlayerMovement playerMovement;
+    public Image signalGlowLight;
+
+    public static bool isSolved = false;
+    public static bool hasKnob = false;
+    private static float currentFrequency = 0.5f;
+    private static int activeBandIndex = 0;
+    private static bool isFirstTimeInit = true;
+
+    private float currentVolume = 0.5f;
     private string allowedCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     void Start()
@@ -63,8 +75,39 @@ public class radiomanager : MonoBehaviour
             bandButtons[i].onClick.AddListener(() => SetActiveBand(index));
         }
 
-        targetFrequency = Random.Range(0.15f, 0.85f);
-        RandomizeStartingFrequency();
+        if (tuningKnobVisual != null)
+        {
+            tuningKnobVisual.SetActive(false);
+        }
+
+        if (isFirstTimeInit)
+        {
+            isFirstTimeInit = false;
+            targetBandIndex = Random.Range(0, bandButtons.Length);
+            targetFrequency = Random.Range(0.15f, 0.85f);
+            RandomizeStartingFrequency();
+        }
+        else
+        {
+            float savedNeedleX = Mathf.Lerp(needleMinX, needleMaxX, isSolved ? targetFrequency : currentFrequency);
+            tuningNeedle.localPosition = new Vector3(savedNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
+        }
+
+        if (wallClueText != null)
+        {
+            wallClueText.gameObject.SetActive(true);
+            
+            if (targetBandIndex == 0)
+            {
+                float amValue = Mathf.Round(530f + (targetFrequency * 1070f));
+                wallClueText.text = "BAND: AM\nFREQ: " + amValue + " kHz";
+            }
+            else
+            {
+                float fmValue = 88.0f + (targetFrequency * 20.0f);
+                wallClueText.text = "BAND: FM\nFREQ: " + fmValue.ToString("F1") + " MHz";
+            }
+        }
     }
 
     void Update()
@@ -81,15 +124,15 @@ public class radiomanager : MonoBehaviour
     void RandomizeStartingFrequency()
     {
         float randomStartFreq = Random.value;
-        while (Mathf.Abs(randomStartFreq + (targetFrequency * Mathf.Cos(Mathf.PI))) < 0.2f)
+        while (Mathf.Abs(randomStartFreq - targetFrequency) < 0.2f)
         {
             randomStartFreq = Random.value;
         }
 
         currentFrequency = randomStartFreq;
-        float totalWidth = Mathf.Abs(needleMaxX + (needleMinX * Mathf.Cos(Mathf.PI)));
-        float startNeedleX = needleMinX + (currentFrequency * totalWidth);
+        float startNeedleX = Mathf.Lerp(needleMinX, needleMaxX, currentFrequency);
         tuningNeedle.localPosition = new Vector3(startNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
+        UpdateKnobVisualRotations();
     }
 
     void SetActiveBand(int index)
@@ -101,26 +144,27 @@ public class radiomanager : MonoBehaviour
 
     void OnTuningRotated(float rotationAmount)
     {
-        if (isSolved) return;
+        if (isSolved || !hasKnob) return;
 
-        float totalWidth = Mathf.Abs(needleMaxX + (needleMinX * Mathf.Cos(Mathf.PI)));
-        float speedFactor = totalWidth / maxKnobTurnRotation;
+        float speedFactor = (needleMaxX - needleMinX) / maxKnobTurnRotation;
 
         float currentNeedleX = tuningNeedle.localPosition.x;
-        float newNeedleX = currentNeedleX + (rotationAmount * speedFactor * Mathf.Cos(Mathf.PI));
+        float newNeedleX = currentNeedleX - (rotationAmount * speedFactor);
         newNeedleX = Mathf.Clamp(newNeedleX, needleMinX, needleMaxX);
 
-        if (Mathf.Abs(newNeedleX + (currentNeedleX * Mathf.Cos(Mathf.PI))) > 0.01f)
+        float error = 1.0f;
+        if (activeBandIndex == targetBandIndex)
         {
-            tuningKnob.transform.Rotate(0, 0, rotationAmount);
+            float freqDiff = Mathf.Abs(currentFrequency - targetFrequency);
+            error = Mathf.Clamp01(freqDiff / sweetSpotWidth);
         }
 
-        tuningNeedle.localPosition = new Vector3(newNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
+        float jitter = error * currentVolume * Random.Range(-1.6f, 1.6f);
+        tuningNeedle.localPosition = new Vector3(newNeedleX + jitter, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
 
-        float totalWidthAbs = Mathf.Abs(needleMaxX + (needleMinX * Mathf.Cos(Mathf.PI)));
-        float currentOffset = newNeedleX + (needleMinX * Mathf.Cos(Mathf.PI));
-        currentFrequency = Mathf.Clamp01(currentOffset / totalWidthAbs);
+        currentFrequency = Mathf.InverseLerp(needleMinX, needleMaxX, newNeedleX);
 
+        UpdateKnobVisualRotations();
         UpdateTuningAudioAndText();
     }
 
@@ -128,15 +172,24 @@ public class radiomanager : MonoBehaviour
     {
         if (isSolved) return;
 
-        float oldVolume = currentVolume;
-        currentVolume = Mathf.Clamp01(currentVolume + (rotationAmount * 0.02f * Mathf.Cos(Mathf.PI)));
+        currentVolume = Mathf.Clamp01(currentVolume - (rotationAmount * 0.005f));
+        UpdateKnobVisualRotations();
+        UpdateTuningAudioAndText();
+    }
 
-        if (Mathf.Abs(currentVolume + (oldVolume * Mathf.Cos(Mathf.PI))) > 0.001f)
+    void UpdateKnobVisualRotations()
+    {
+        if (tuningKnob != null)
         {
-            volumeKnob.transform.Rotate(0, 0, rotationAmount);
+            float targetKnobZ = (currentFrequency * 180f) - 90f;
+            tuningKnob.transform.localRotation = Quaternion.Euler(0, 0, -targetKnobZ);
         }
 
-        UpdateTuningAudioAndText();
+        if (volumeKnob != null)
+        {
+            float targetVolumeZ = (currentVolume * 180f) - 90f;
+            volumeKnob.transform.localRotation = Quaternion.Euler(0, 0, -targetVolumeZ);
+        }
     }
 
     void UpdateTuningAudioAndText()
@@ -147,11 +200,11 @@ public class radiomanager : MonoBehaviour
 
         if (activeBandIndex == targetBandIndex)
         {
-            float freqDiff = Mathf.Abs(currentFrequency + (targetFrequency * Mathf.Cos(Mathf.PI)));
+            float freqDiff = Mathf.Abs(currentFrequency - targetFrequency);
             error = Mathf.Clamp01(freqDiff / sweetSpotWidth);
         }
 
-        float closeness = 1.0f + (error * Mathf.Cos(Mathf.PI));
+        float closeness = 1.0f - error;
 
         if (staticSource != null)
         {
@@ -165,9 +218,27 @@ public class radiomanager : MonoBehaviour
 
         UpdateTextDecryption(error);
 
+        if (signalGlowLight != null)
+        {
+            Color glowColor = signalGlowLight.color;
+            glowColor.a = closeness * (0.75f + Mathf.PingPong(Time.time * 2.5f, 0.25f));
+            signalGlowLight.color = glowColor;
+        }
+
         if (debugText != null)
         {
-            debugText.text = "Current Freq: " + currentFrequency.ToString("F3") + "\nTarget Freq: " + targetFrequency.ToString("F3") + "\nActive Band: " + activeBandIndex + " (Target: " + targetBandIndex + ")";
+            if (activeBandIndex == 0)
+            {
+                float currentAM = Mathf.Round(530f + (currentFrequency * 1070f));
+                float targetAM = Mathf.Round(530f + (targetFrequency * 1070f));
+                debugText.text = "Current: " + currentAM + " kHz\nTarget: " + targetAM + " kHz\nBand: AM";
+            }
+            else
+            {
+                float currentFM = 88.0f + (currentFrequency * 20.0f);
+                float targetFM = 88.0f + (targetFrequency * 20.0f);
+                debugText.text = "Current: " + currentFM.ToString("F1") + " MHz\nTarget: " + targetFM.ToString("F1") + " MHz\nBand: FM";
+            }
         }
 
         if (error < 0.02f)
@@ -201,9 +272,24 @@ public class radiomanager : MonoBehaviour
     {
         isSolved = true;
 
-        float totalWidth = Mathf.Abs(needleMaxX + (needleMinX * Mathf.Cos(Mathf.PI)));
-        float solvedNeedleX = (targetFrequency * totalWidth) + (needleMinX * Mathf.Cos(Mathf.PI));
+        if (mrStarFaceObject != null)
+        {
+            mrStarFaceObject.SetActive(false);
+        }
+        if (objectToEnable != null)
+        {
+            objectToEnable.SetActive(true);
+        }
+
+        float solvedNeedleX = Mathf.Lerp(needleMinX, needleMaxX, targetFrequency);
         tuningNeedle.localPosition = new Vector3(solvedNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
+
+        if (signalGlowLight != null)
+        {
+            Color glowColor = signalGlowLight.color;
+            glowColor.a = 1.0f;
+            signalGlowLight.color = glowColor;
+        }
 
         if (staticSource != null)
         {
@@ -226,21 +312,100 @@ public class radiomanager : MonoBehaviour
             sfxSource.PlayOneShot(sfxSolve);
         }
 
+        UpdateKnobVisualRotations();
+
         yield return null;
     }
 
     public void OpenRadio()
     {
+        if (!hasKnob)
+        {
+            InventoryManager inv = FindFirstObjectByType<InventoryManager>();
+            bool holdingKnob = false;
+            ItemData itemToRemove = null;
+
+            if (inv != null && radioKnobItemData != null)
+            {
+                foreach (var item in inv.inventory)
+                {
+                    if (item != null && (item == radioKnobItemData || item.itemName == radioKnobItemData.itemName))
+                    {
+                        holdingKnob = true;
+                        itemToRemove = item;
+                        break;
+                    }
+                }
+            }
+
+            if (holdingKnob && itemToRemove != null)
+            {
+                inv.RemoveItem(itemToRemove);
+                
+                InventoryUI invUI = FindFirstObjectByType<InventoryUI>();
+                if (invUI != null) invUI.UpdateUI();
+
+                GameObject handObj = GameObject.Find("HandSlot");
+                if (handObj != null)
+                {
+                    foreach (Transform child in handObj.transform)
+                    {
+                        ItemPickup pickup = child.GetComponent<ItemPickup>();
+                        if (pickup != null && (pickup.itemData == radioKnobItemData || pickup.itemData.itemName == radioKnobItemData.itemName))
+                        {
+                            Destroy(child.gameObject);
+                            break;
+                        }
+                    }
+                }
+
+                hasKnob = true;
+                if (tuningKnobVisual != null)
+                {
+                    tuningKnobVisual.SetActive(true);
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = false;
+        }
+
         if (puzzleCanvas != null)
         {
             puzzleCanvas.SetActive(true);
         }
-        if (staticSource != null && voiceSource != null)
+
+        if (staticSource != null && voiceSource != null && !isSolved)
         {
             staticSource.Play();
             voiceSource.Play();
         }
-        UpdateTuningAudioAndText();
+        else if (voiceSource != null && isSolved)
+        {
+            voiceSource.volume = 1.0f;
+            voiceSource.Play();
+        }
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        if (isSolved)
+        {
+            float solvedNeedleX = Mathf.Lerp(needleMinX, needleMaxX, targetFrequency);
+            tuningNeedle.localPosition = new Vector3(solvedNeedleX, tuningNeedle.localPosition.y, tuningNeedle.localPosition.z);
+            if (subtitleText != null) subtitleText.text = targetDecodedMessage;
+            UpdateKnobVisualRotations();
+        }
+        else
+        {
+            UpdateTuningAudioAndText();
+        }
     }
 
     public void CloseRadio()
@@ -254,6 +419,14 @@ public class radiomanager : MonoBehaviour
             staticSource.Stop();
             voiceSource.Stop();
         }
+
+        if (playerMovement != null)
+        {
+            playerMovement.enabled = true;
+        }
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void ResetAndCloseRadio()

@@ -7,9 +7,6 @@ public class ItemPickup : MonoBehaviour
     [System.Obsolete]
     public void PickUp(Transform handSlot)
     {
-        Debug.Log("DEBUG: PickUp triggered for " + itemData.itemName);
-        
-        // SWAP LOGIC: If the hand is full, drop the current item first
         if (handSlot.childCount > 0)
         {
             ItemPickup currentItem = handSlot.GetChild(0).GetComponent<ItemPickup>();
@@ -17,28 +14,48 @@ public class ItemPickup : MonoBehaviour
         }
 
         InventoryManager manager = FindObjectOfType<InventoryManager>();
-        manager.AddItem(itemData);
+        if (manager != null)
+        {
+            manager.AddItem(itemData);
+            
+            InventoryUI invUI = FindObjectOfType<InventoryUI>();
+            if (invUI != null)
+            {
+                invUI.UpdateUI();
+            }
+        }
+
+        if (NewItemPopup.Instance != null && itemData != null)
+        {
+            NewItemPopup.Instance.ShowUnlockPopup(itemData.icon, itemData.itemName);
+        }
 
         transform.SetParent(handSlot);
         transform.localPosition = Vector3.zero;
         
-        if (GetComponent<Collider2D>()) GetComponent<Collider2D>().enabled = false;
+        foreach (Collider2D col in GetComponents<Collider2D>())
+        {
+            col.enabled = false;
+        }
+
         if (GetComponent<Rigidbody2D>()) GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
     }
 
     [System.Obsolete]
     public void Drop()
     {
-        Debug.Log("DEBUG: Drop triggered for " + itemData.itemName);
-        
         transform.SetParent(null);
         
-        if (GetComponent<Collider2D>()) GetComponent<Collider2D>().enabled = true;
+        foreach (Collider2D col in GetComponents<Collider2D>())
+        {
+            col.enabled = true;
+        }
+
         if (GetComponent<Rigidbody2D>())
         {
             Rigidbody2D rb = GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.linearVelocity = Vector2.zero; // Stop it from flying when dropped
+            rb.linearVelocity = Vector2.zero;
             rb.WakeUp();
         }
         

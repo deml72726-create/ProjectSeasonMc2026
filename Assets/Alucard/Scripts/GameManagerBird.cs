@@ -17,6 +17,12 @@ public class GameManagerBird : MonoBehaviour
     public Animator birdAnimator; 
     public List<GameObject> melodyVfxPrefabs; 
 
+    public XylophoneManager xylophoneManagerReference;
+
+    public GameObject radioKnobPrefab; 
+    public Transform nestDropPoint;     
+    public float cinematicZoomSize = 5f; 
+
     public float zoomOrthographicSize = 3f;
     public float fadeDuration = 1.5f;
     public bool CanCloseTab = false;
@@ -26,6 +32,7 @@ public class GameManagerBird : MonoBehaviour
     private float originalCameraSize;
     private Coroutine cameraMoveCoroutine;
     private MonoBehaviour cinemachineBrainComponent;
+    public static bool isPermanentlySolved = false;
 
     private void Awake()
     {
@@ -49,10 +56,18 @@ public class GameManagerBird : MonoBehaviour
             originalCameraSize = mainCameraComponent.orthographicSize;
             cinemachineBrainComponent = mainCameraComponent.GetComponent("CinemachineBrain") as MonoBehaviour;
         }
+
+        if (isPermanentlySolved)
+        {
+            Collider2D col = GetComponent<Collider2D>();
+            if (col != null) col.enabled = false;
+        }
     }
 
     void Update()
     {
+        if (isPermanentlySolved) return;
+
         if (OnBird && CanCloseTab && Input.GetKeyDown(KeyCode.Escape))
         {
             StartCoroutine(CloseBirdTask());
@@ -61,6 +76,8 @@ public class GameManagerBird : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (isPermanentlySolved) return;
+
         if (other.CompareTag("Player") && !OnBird)
         {
             StartCoroutine(EnterBirdSequence());
@@ -114,7 +131,6 @@ public class GameManagerBird : MonoBehaviour
                 birdAudioSource.PlayOneShot(xylophoneSounds[index]);
             }
 
-            // Picks a random index from your list of 4 VFX prefabs
             if (melodyVfxPrefabs != null && melodyVfxPrefabs.Count > 0 && birdTargetTransform != null)
             {
                 int randomVfxIndex = Random.Range(0, melodyVfxPrefabs.Count);
@@ -124,7 +140,6 @@ public class GameManagerBird : MonoBehaviour
                 {
                     Vector3 spawnPos = birdTargetTransform.position + new Vector3(0, 1.2f, -1f); 
                     GameObject spawnedVfx = Instantiate(randomPrefab, spawnPos, Quaternion.identity);
-                    
                     spawnedVfx.transform.localScale = spawnedVfx.transform.localScale * 0.5f;
                     Destroy(spawnedVfx, 1.5f); 
                 }
@@ -134,10 +149,74 @@ public class GameManagerBird : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2.0f);
-        if (OnBird)
+        if (OnBird && !isPermanentlySolved)
         {
             StartCoroutine(CloseBirdTask());
         }
+    }
+
+    public void TriggerVictoryCinematic()
+    {
+        StartCoroutine(VictoryCinematicSequence());
+    }
+
+    IEnumerator VictoryCinematicSequence()
+    {
+        isPermanentlySolved = true;
+        OnBird = false;
+        CanCloseTab = false;
+
+        desactivatemovement(false);
+        FadeOut();
+        yield return new WaitForSeconds(fadeDuration);
+
+        if (cinemachineBrainComponent != null)
+        {
+            cinemachineBrainComponent.enabled = false;
+        }
+
+        if (mainCameraComponent != null && birdTargetTransform != null)
+        {
+            Vector3 targetPos = new Vector3(birdTargetTransform.position.x, birdTargetTransform.position.y - 1f, originalCameraPosition.z);
+            
+            if (cameraMoveCoroutine != null) StopCoroutine(cameraMoveCoroutine);
+            cameraMoveCoroutine = StartCoroutine(MoveCameraRoutine(targetPos, cinematicZoomSize));
+        }
+
+        FadeIn();
+        yield return new WaitForSeconds(fadeDuration);
+
+        if (radioKnobPrefab != null && nestDropPoint != null)
+        {
+            Instantiate(radioKnobPrefab, nestDropPoint.position, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(3.0f);
+
+        FadeOut();
+        yield return new WaitForSeconds(fadeDuration);
+
+        if (mainCameraComponent != null)
+        {
+            if (cameraMoveCoroutine != null) StopCoroutine(cameraMoveCoroutine);
+            cameraMoveCoroutine = StartCoroutine(MoveCameraRoutine(originalCameraPosition, originalCameraSize));
+        }
+
+        FadeIn();
+        yield return new WaitForSeconds(fadeDuration);
+
+        if (cinemachineBrainComponent != null)
+        {
+            cinemachineBrainComponent.enabled = true;
+        }
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        desactivatemovement(true);
     }
 
     public IEnumerator CloseBirdTask()
@@ -189,9 +268,9 @@ public class GameManagerBird : MonoBehaviour
     IEnumerator WaitAndAssignCombo()
     {
         yield return new WaitForSeconds(0.5f);
-        if (XylophoneManager.Instance != null)
+        if (xylophoneManagerReference != null)
         {
-            XylophoneManager.Instance.correctMelody = new List<int>(correctCombo);
+            xylophoneManagerReference.correctMelody = new List<int>(correctCombo);
         }
     }
 

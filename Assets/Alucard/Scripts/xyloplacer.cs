@@ -3,11 +3,19 @@ using UnityEngine;
 public class XylophonePlacer : MonoBehaviour
 {
     public ItemData xylophoneItemData;
-    public GameObject groundXylophoneVisual; // The 2D sprite on the ground
-    public GameObject xylophoneOverlayCanvas; // Your UI button overlay
+    public GameObject groundXylophoneVisual; 
+    public GameObject xylophoneOverlayCanvas; 
     public PlayerMovement playerMovement;
 
-    private bool isPlaced = false;
+    private static bool isPlaced = false;
+
+    void Start()
+    {
+        if (groundXylophoneVisual != null && groundXylophoneVisual != gameObject)
+        {
+            groundXylophoneVisual.SetActive(isPlaced);
+        }
+    }
 
     void Update()
     {
@@ -36,38 +44,43 @@ public class XylophonePlacer : MonoBehaviour
     {
         InventoryManager inv = FindFirstObjectByType<InventoryManager>();
         bool hasXylo = false;
-        int xyloIndex = -1;
 
         if (inv != null && xylophoneItemData != null)
         {
-            for (int i = 0; i < inv.inventory.Count; i++)
+            if (inv.inventory.Contains(xylophoneItemData))
             {
-                if (inv.inventory[i] == xylophoneItemData)
-                {
-                    hasXylo = true;
-                    xyloIndex = i;
-                    break;
-                }
+                hasXylo = true;
             }
         }
 
         if (hasXylo)
         {
-            // Remove from inventory
-            inv.inventory.RemoveAt(xyloIndex);
+            inv.RemoveItem(xylophoneItemData);
             
-            // Show on the ground
+            InventoryUI invUI = FindFirstObjectByType<InventoryUI>();
+            if (invUI != null) invUI.UpdateUI();
+            
             if (groundXylophoneVisual != null)
             {
                 groundXylophoneVisual.SetActive(true);
+                SpriteRenderer spriteRenderer = groundXylophoneVisual.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.enabled = true;
+                }
             }
 
             isPlaced = true;
-            Debug.Log("Xylophone placed on the ground!");
         }
-        else
+    }
+
+    public void DisableInteractionPermanently()
+    {
+        CloseXylophoneOverlay();
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null)
         {
-            Debug.Log("I need to find a musical instrument first.");
+            col.enabled = false;
         }
     }
 

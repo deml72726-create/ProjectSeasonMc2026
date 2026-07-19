@@ -15,4 +15,5 @@ MonoBehaviour:
   itemName: coin
   icon: {fileID: 7675826601332790545, guid: a91092486f1e3a64581ca0cb7bf2b43f, type: 3}
   itemID: 4
-  prefab: {fileID: 7988729119699526996, guid: 0ba4d5e804703b54f8c1f33e6c21f65c, type: 3}
+  prefab: {fileID: 6885711940302121772, guid: b6081a646e6d4bf479df1d9625c5a4dd, type: 3}
+  description: 

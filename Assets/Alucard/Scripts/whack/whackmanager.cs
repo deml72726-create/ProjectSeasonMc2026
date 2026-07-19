@@ -26,9 +26,12 @@ public class WhackGameManager : MonoBehaviour
     public AudioClip sfxHitEvil;
     public AudioClip sfxHitCute;
 
+    public PlayerMovement playerMovementScript;
+
     private int evilWhackedCount = 0;
     private bool isGamePlaying = false;
     private bool hasUnlockedWhack = false;
+    private Coroutine textPopCoroutine;
 
     void Awake()
     {
@@ -43,9 +46,17 @@ public class WhackGameManager : MonoBehaviour
 
     void Update()
     {
-        if (isGamePlaying && Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (isGamePlaying)
         {
-            CloseGame();
+            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                CloseGame();
+            }
+
+            if (anxietyVignette != null && anxietyVignette.alpha > 0f)
+            {
+                anxietyVignette.alpha -= Time.deltaTime * 0.08f;
+            }
         }
     }
 
@@ -58,7 +69,6 @@ public class WhackGameManager : MonoBehaviour
             {
                 if (!inventoryManager.inventory.Contains(coinItemData))
                 {
-                    Debug.Log("The machine is locked. It needs a coin to play!");
                     return;
                 }
 
@@ -82,6 +92,11 @@ public class WhackGameManager : MonoBehaviour
             }
         }
 
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = false;
+        }
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -103,6 +118,11 @@ public class WhackGameManager : MonoBehaviour
         if (anxietyVignette != null) anxietyVignette.alpha = 0f;
 
         if (gameCanvas != null) gameCanvas.SetActive(false);
+
+        if (playerMovementScript != null)
+        {
+            playerMovementScript.enabled = true;
+        }
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -133,18 +153,28 @@ public class WhackGameManager : MonoBehaviour
 
         if (isEvil)
         {
-            if (sfxSource != null && sfxHitEvil != null) sfxSource.PlayOneShot(sfxHitEvil);
+            if (sfxSource != null && sfxHitEvil != null)
+            {
+                sfxSource.pitch = Random.Range(0.92f, 1.15f);
+                sfxSource.PlayOneShot(sfxHitEvil);
+            }
 
             evilWhackedCount++;
             UpdateScoreText();
+            TriggerScorePopEffect();
 
             if (evilWhackedCount >= evilWhackedNeeded) WinGame();
         }
         else
         {
-            if (sfxSource != null && sfxHitCute != null) sfxSource.PlayOneShot(sfxHitCute);
+            if (sfxSource != null && sfxHitCute != null)
+            {
+                sfxSource.pitch = Random.Range(0.85f, 1.05f);
+                sfxSource.PlayOneShot(sfxHitCute);
+            }
             evilWhackedCount = 0;
             UpdateScoreText();
+            TriggerScorePopEffect();
             StartCoroutine(ScreenShakeEffect());
             IncreaseAnxietyVignette();
         }
@@ -155,17 +185,49 @@ public class WhackGameManager : MonoBehaviour
         if (scoreText != null) scoreText.text = "Eliminated: " + evilWhackedCount + " / " + evilWhackedNeeded;
     }
 
+    void TriggerScorePopEffect()
+    {
+        if (textPopCoroutine != null) StopCoroutine(textPopCoroutine);
+        textPopCoroutine = StartCoroutine(PopScoreTextRoutine());
+    }
+
+    IEnumerator PopScoreTextRoutine()
+    {
+        if (scoreText == null) yield break;
+        float elapsed = 0f;
+        float duration = 0.1f;
+        Vector3 startScale = Vector3.one;
+        Vector3 targetScale = Vector3.one * 1.25f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            scoreText.transform.localScale = Vector3.Lerp(startScale, targetScale, elapsed / duration);
+            yield return null;
+        }
+
+        elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            scoreText.transform.localScale = Vector3.Lerp(targetScale, startScale, elapsed / duration);
+            yield return null;
+        }
+
+        scoreText.transform.localScale = startScale;
+    }
+
     void IncreaseAnxietyVignette()
     {
-        if (anxietyVignette != null) anxietyVignette.alpha = Mathf.Min(0.8f, anxietyVignette.alpha + 0.15f);
+        if (anxietyVignette != null) anxietyVignette.alpha = Mathf.Min(0.85f, anxietyVignette.alpha + 0.25f);
     }
 
     IEnumerator ScreenShakeEffect()
     {
         Vector3 originalPos = gameCanvas.transform.localPosition;
         float time = 0.0f;
-        float duration = 0.4f;
-        float magnitude = 15.0f;
+        float duration = 0.35f;
+        float magnitude = 18.0f;
 
         while (time < duration)
         {
@@ -189,7 +251,7 @@ public class WhackGameManager : MonoBehaviour
 
         if (NewItemPopup.Instance != null && hamsterItemData != null)
         {
-            NewItemPopup.Instance.ShowUnlockPopup(hamsterItemData.icon, hamsterItemData.itemName, "A friendly little hamster that was trapped inside the machine. He is now your companion.");
+            NewItemPopup.Instance.ShowUnlockPopup(hamsterItemData.icon, hamsterItemData.itemName);
         }
 
         InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();

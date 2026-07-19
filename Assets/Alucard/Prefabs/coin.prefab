@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 3059406644306472238}
   - component: {fileID: 1513704068628302406}
   - component: {fileID: 1927715956517810969}
-  - component: {fileID: 7713755419379388914}
   m_Layer: 0
   m_Name: coin
   m_TagString: Untagged
@@ -173,21 +172,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 11.0099, y: 10.24}
   m_EdgeRadius: 0
---- !u!114 &7713755419379388914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6885711940302121772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82469a0afa1668347b4f3af9b87fc8c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::neededitemsanimation
-  itemSprite: {fileID: 7675826601332790545, guid: a91092486f1e3a64581ca0cb7bf2b43f, type: 3}
-  itemName: coin
-  itemDescription: A special item used in your adventure.
-  onPickupEvent:
-    m_PersistentCalls:
-      m_Calls: []

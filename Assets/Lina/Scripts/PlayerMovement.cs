@@ -101,6 +101,12 @@ public class PlayerMovement : MonoBehaviour
         isBusy = true; 
         foreach (Transform child in handSlot) DestroyImmediate(child.gameObject);
         invManager.AddItem(item.itemData);
+        
+        if (NewItemPopup.Instance != null && item != null && item.itemData != null)
+        {
+            NewItemPopup.Instance.ShowUnlockPopup(item.itemData.icon, item.itemData.itemName);
+        }
+        
         item.gameObject.SetActive(false); 
         selectedIndex = invManager.inventory.Count - 1;
         GameObject visualCopy = Instantiate(item.itemData.prefab, item.transform.position, Quaternion.identity);

@@ -8,12 +8,16 @@ public class neededitemsanimation : MonoBehaviour
     public string itemName = "Key Item";
     public string itemDescription = "A special item used in your adventure.";
     public UnityEvent onPickupEvent;
+    
     private bool playerInRange = false;
+    private bool isPickedUp = false;
 
     void Update()
     {
-        if (playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (!isPickedUp && playerInRange && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
+            isPickedUp = true;
+
             if (NewItemPopup.Instance != null)
             {
                 NewItemPopup.Instance.ShowUnlockPopup(itemSprite, itemName, itemDescription);
@@ -24,12 +28,20 @@ public class neededitemsanimation : MonoBehaviour
                 onPickupEvent.Invoke();
             }
 
+            Collider2D col = GetComponent<Collider2D>();
+            if (col != null)
+            {
+                col.enabled = false;
+            }
+
             gameObject.SetActive(false);
         }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (isPickedUp) return;
+
         if (other.CompareTag("Player"))
         {
             playerInRange = true;

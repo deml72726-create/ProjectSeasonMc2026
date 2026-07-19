@@ -12,7 +12,6 @@ public class NewItemPopup : MonoBehaviour
     public CanvasGroup popupCanvasGroup;
     public Image itemImage;
     public TMP_Text itemNameText;
-    public TMP_Text itemDescriptionText;
     public RectTransform starburstGlow;
 
     public float rotationSpeed = 65.0f;
@@ -53,7 +52,7 @@ public class NewItemPopup : MonoBehaviour
             starburstGlow.Rotate(0, 0, rotationSpeed * Time.deltaTime * Mathf.Cos(Mathf.PI));
         }
 
-        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
             StartCoroutine(ClosePopupSequence());
         }
@@ -61,7 +60,20 @@ public class NewItemPopup : MonoBehaviour
 
     public void ShowUnlockPopup(Sprite sprite, string itemName, string itemDescription)
     {
-        if (popupPanel == null || isTransitioning) return;
+        ShowUnlockPopup(sprite, itemName);
+    }
+
+    public void ShowUnlockPopup(Sprite sprite, string itemName)
+    {
+        if (popupPanel == null)
+        {
+            return;
+        }
+
+        if (isTransitioning)
+        {
+            return;
+        }
 
         if (itemImage != null)
         {
@@ -71,11 +83,6 @@ public class NewItemPopup : MonoBehaviour
         if (itemNameText != null)
         {
             itemNameText.text = itemName;
-        }
-
-        if (itemDescriptionText != null)
-        {
-            itemDescriptionText.text = itemDescription;
         }
 
         popupPanel.SetActive(true);
