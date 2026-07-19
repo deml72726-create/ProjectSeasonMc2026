@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2146919941}
+      - m_Target: {fileID: 248403735}
         m_TargetAssemblyTypeName: BarStateController, Assembly-CSharp
         m_MethodName: DecreaseState
         m_Mode: 1
@@ -522,6 +522,105 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237915270}
   m_CullTransparentMesh: 1
+--- !u!1 &248403733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 248403734}
+  - component: {fileID: 248403737}
+  - component: {fileID: 248403736}
+  - component: {fileID: 248403735}
+  m_Layer: 5
+  m_Name: Bar Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &248403734
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248403733}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
+  m_LocalScale: {x: 2.698896, y: 2.698896, z: 2.698896}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 340298770}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1050, y: 817}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &248403735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248403733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736ad70ede271884687c7bf11d06c1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BarStateController
+  myAudioMixer: {fileID: 24100000, guid: 24864c301bce18446b674cd442b734e1, type: 2}
+  parameterName: MusicVol
+  uiImage: {fileID: 248403736}
+  barStates:
+  - {fileID: 21300000, guid: 6c959688c003661469219a8f56bdddb8, type: 3}
+  - {fileID: 21300000, guid: a51a547ca7c41e54bb26131f4a9bb75d, type: 3}
+  - {fileID: 21300000, guid: b10dee8200710114b9723b4010729917, type: 3}
+  - {fileID: 21300000, guid: de083b48d965a1943b2fadcc7e41c5d0, type: 3}
+  - {fileID: 21300000, guid: dc9eaa38e63bf5246ba4128a0ee23f73, type: 3}
+  - {fileID: 21300000, guid: 941723e5699c65141ae8decef9c513aa, type: 3}
+  currentIndex: 5
+--- !u!114 &248403736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248403733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 941723e5699c65141ae8decef9c513aa, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &248403737
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248403733}
+  m_CullTransparentMesh: 1
 --- !u!1 &294549847
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +782,7 @@ Transform:
   m_LocalScale: {x: 0.30173454, y: 0.30173454, z: 0.30173454}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2146919944}
+  - {fileID: 248403734}
   - {fileID: 1861585718}
   - {fileID: 103928308}
   m_Father: {fileID: 984248859}
@@ -1730,12 +1829,12 @@ MonoBehaviour:
   parameterName: SfxVol
   uiImage: {fileID: 1438800565}
   barStates:
-  - {fileID: 21300000, guid: 941723e5699c65141ae8decef9c513aa, type: 3}
-  - {fileID: 21300000, guid: dc9eaa38e63bf5246ba4128a0ee23f73, type: 3}
-  - {fileID: 21300000, guid: de083b48d965a1943b2fadcc7e41c5d0, type: 3}
-  - {fileID: 21300000, guid: b10dee8200710114b9723b4010729917, type: 3}
-  - {fileID: 21300000, guid: a51a547ca7c41e54bb26131f4a9bb75d, type: 3}
   - {fileID: 21300000, guid: 6c959688c003661469219a8f56bdddb8, type: 3}
+  - {fileID: 21300000, guid: a51a547ca7c41e54bb26131f4a9bb75d, type: 3}
+  - {fileID: 21300000, guid: b10dee8200710114b9723b4010729917, type: 3}
+  - {fileID: 21300000, guid: de083b48d965a1943b2fadcc7e41c5d0, type: 3}
+  - {fileID: 21300000, guid: dc9eaa38e63bf5246ba4128a0ee23f73, type: 3}
+  - {fileID: 21300000, guid: 941723e5699c65141ae8decef9c513aa, type: 3}
   currentIndex: 5
 --- !u!114 &1438800565
 MonoBehaviour:
@@ -1782,16 +1881,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438800563}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 90}
   m_LocalScale: {x: 2.698896, y: 2.698896, z: 2.698896}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1626530738}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 132.99997, y: 200.99994}
+  m_AnchoredPosition: {x: 1050, y: 828}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1500514600
@@ -2324,7 +2423,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2146919941}
+      - m_Target: {fileID: 248403735}
         m_TargetAssemblyTypeName: BarStateController, Assembly-CSharp
         m_MethodName: IncreaseState
         m_Mode: 1
@@ -3029,105 +3128,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
---- !u!1 &2146919940
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2146919944}
-  - component: {fileID: 2146919943}
-  - component: {fileID: 2146919942}
-  - component: {fileID: 2146919941}
-  m_Layer: 5
-  m_Name: Bar Music
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2146919941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146919940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736ad70ede271884687c7bf11d06c1b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BarStateController
-  myAudioMixer: {fileID: 24100000, guid: 24864c301bce18446b674cd442b734e1, type: 2}
-  parameterName: MusicVol
-  uiImage: {fileID: 2146919942}
-  barStates:
-  - {fileID: 21300000, guid: 941723e5699c65141ae8decef9c513aa, type: 3}
-  - {fileID: 21300000, guid: dc9eaa38e63bf5246ba4128a0ee23f73, type: 3}
-  - {fileID: 21300000, guid: de083b48d965a1943b2fadcc7e41c5d0, type: 3}
-  - {fileID: 21300000, guid: b10dee8200710114b9723b4010729917, type: 3}
-  - {fileID: 21300000, guid: a51a547ca7c41e54bb26131f4a9bb75d, type: 3}
-  - {fileID: 21300000, guid: 6c959688c003661469219a8f56bdddb8, type: 3}
-  currentIndex: 5
---- !u!114 &2146919942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146919940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 941723e5699c65141ae8decef9c513aa, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &2146919943
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146919940}
-  m_CullTransparentMesh: 1
---- !u!224 &2146919944
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146919940}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 2.698896, y: 2.698896, z: 2.698896}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 340298770}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 132.99997, y: 200.99994}
-  m_SizeDelta: {x: 1920, y: 1080}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
