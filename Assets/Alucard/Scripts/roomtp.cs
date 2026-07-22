@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using TMPro; // Required for TextMeshPro
+using TMPro;
 
 public class RoomTeleport : MonoBehaviour
 {
@@ -11,8 +11,12 @@ public class RoomTeleport : MonoBehaviour
     public string roomName = "Kitchen";
 
     [Header("UI Settings")]
-    public GameObject promptUI;      // Drag the Panel or GameObject here
-    public TMP_Text promptText;      // Drag the TextMeshPro component here
+    public GameObject promptUI;      
+    public TMP_Text promptText;      
+
+    [Header("Audio Settings")]
+    public AudioSource sfxSource;
+    public AudioClip teleportSFX;
 
     private bool isPlayerInRange = false;
     private bool isTransitioning = false;
@@ -28,11 +32,20 @@ public class RoomTeleport : MonoBehaviour
 
         if (promptUI != null)
             promptUI.SetActive(false);
+
+        if (sfxSource == null)
+        {
+            sfxSource = GetComponent<AudioSource>();
+        }
+        if (sfxSource == null)
+        {
+            sfxSource = gameObject.AddComponent<AudioSource>();
+        }
+        sfxSource.spatialBlend = 0f;
     }
 
     void Update()
     {
-        // Check for player input when in range
         if (isPlayerInRange && !isTransitioning && Input.GetKeyDown(KeyCode.E))
         {
             StartCoroutine(PerformTransition());
@@ -69,7 +82,6 @@ public class RoomTeleport : MonoBehaviour
     {
         isTransitioning = true;
         
-        // Hide the prompt while transitioning
         if (promptUI != null) promptUI.SetActive(false);
 
         PlayerMovement movement = playerObject.GetComponent<PlayerMovement>();
@@ -77,6 +89,11 @@ public class RoomTeleport : MonoBehaviour
 
         if (movement != null) movement.enabled = false;
         if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        if (sfxSource != null && teleportSFX != null)
+        {
+            sfxSource.PlayOneShot(teleportSFX);
+        }
 
         if (fadeGroup != null)
         {
@@ -89,6 +106,12 @@ public class RoomTeleport : MonoBehaviour
         }
 
         playerObject.transform.position = playerDestination.position;
+
+        if (TeleportWarpEffect.Instance != null)
+        {
+            TeleportWarpEffect.Instance.TriggerWarp();
+        }
+
         yield return new WaitForSeconds(0.2f);
 
         if (fadeGroup != null)

@@ -571,6 +571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 63270538}
   - component: {fileID: 63270537}
+  - component: {fileID: 63270539}
   m_Layer: 0
   m_Name: Tableau
   m_TagString: Untagged
@@ -653,6 +654,26 @@ Transform:
   - {fileID: 669868127}
   m_Father: {fileID: 140429962}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &63270539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63270536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fd938be6efd6142b8d81a6d1110f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShinyInteractable
+  spriteRenderer: {fileID: 63270537}
+  outlineMaterial: {fileID: 2100000, guid: 33ea7fec608bede499eded531af51e44, type: 2}
+  isBubbleEnabled: 1
+  bubbleCanvasGroup: {fileID: 748754629}
+  bubbleText: {fileID: 1697305753}
+  fadeDuration: 0.3
+  interactionMessage: Is that some sort ... of code ? Would any of that be benifitial
+    ?
 --- !u!1 &67723266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1194,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 140429962}
+  - component: {fileID: 140429964}
+  - component: {fileID: 140429963}
   m_Layer: 0
   m_Name: '[First Room]'
   m_TagString: Untagged
@@ -1211,6 +1234,66 @@ Transform:
   - {fileID: 2062971037}
   m_Father: {fileID: 1732986219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &140429963
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140429961}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -23.050053, y: -0.12099743}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 68.15368, y: 16.003706}
+  m_EdgeRadius: 0
+--- !u!114 &140429964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140429961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b93862e121e0cd74a890cb29a13c24e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicZoneTrigger
+  roomMusicClip: {fileID: 8300000, guid: f2f16a10efbba214ba37bc9cf0f0c114, type: 3}
+  fadeDuration: 1.2
 --- !u!1 &143103297
 GameObject:
   m_ObjectHideFlags: 0
@@ -3185,7 +3268,7 @@ MonoBehaviour:
   maxKnobTurnRotation: 270
   subtitleText: {fileID: 471446726}
   debugText: {fileID: 732249133}
-  targetDecodedMessage: 'alulu the only and only goated '
+  targetDecodedMessage: WAKE UP ASHEN ! YOU NEED TO WAKE UP !
   radioKnobItemData: {fileID: 11400000, guid: a75f1c556de6e5c43a0a6f51033e251a, type: 2}
   tuningKnobVisual: {fileID: 770365831}
   mrStarFaceObject: {fileID: 1898754317}
@@ -3821,6 +3904,8 @@ MonoBehaviour:
   roomName: the room
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!1 &294821059
 GameObject:
   m_ObjectHideFlags: 0
@@ -4071,6 +4156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 307575850}
   - component: {fileID: 307575851}
+  - component: {fileID: 307575852}
   m_Layer: 0
   m_Name: '[Tree]'
   m_TagString: Untagged
@@ -4152,6 +4238,25 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &307575852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307575849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fd938be6efd6142b8d81a6d1110f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShinyInteractable
+  spriteRenderer: {fileID: 307575851}
+  outlineMaterial: {fileID: 2100000, guid: 33ea7fec608bede499eded531af51e44, type: 2}
+  isBubbleEnabled: 1
+  bubbleCanvasGroup: {fileID: 0}
+  bubbleText: {fileID: 0}
+  fadeDuration: 0.3
+  interactionMessage: 
 --- !u!1 &308919417
 GameObject:
   m_ObjectHideFlags: 0
@@ -9778,6 +9883,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 349810684}
+  - component: {fileID: 349810685}
   - component: {fileID: 349810683}
   m_Layer: 0
   m_Name: Music Source
@@ -9898,6 +10004,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1940098462}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &349810685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 349810682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81da63cf9031af54ca49d84d90474249, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
 --- !u!1 &369705849
 GameObject:
   m_ObjectHideFlags: 0
@@ -11561,6 +11679,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487438900}
   m_CullTransparentMesh: 1
+--- !u!1 &510391673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 510391674}
+  - component: {fileID: 510391675}
+  m_Layer: 0
+  m_Name: __WarpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510391674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510391673}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 541258668}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &510391675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510391673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05bca403fe2ddba48b8c81f71b73d6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TeleportWarpEffect
+  playerSpriteTransform: {fileID: 2089573054}
+  sfxSource: {fileID: 0}
+  warpSFX: {fileID: 0}
 --- !u!1 &512118430
 GameObject:
   m_ObjectHideFlags: 0
@@ -12259,6 +12424,7 @@ Transform:
   - {fileID: 1374701447}
   - {fileID: 143103300}
   - {fileID: 1024537322}
+  - {fileID: 510391674}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &551845150
@@ -16000,6 +16166,8 @@ MonoBehaviour:
   roomName: The Kitchen
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!1 &838619908
 GameObject:
   m_ObjectHideFlags: 0
@@ -16446,12 +16614,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e1955ff4c708a4a8e4d8ed2b224b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomTeleporter
-  playerDestination: {fileID: 303466585}
+  playerDestination: {fileID: 420445126}
   fadeGroup: {fileID: 1061307078}
   fadeSpeed: 3
   roomName: The s Room
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!4 &873566958
 Transform:
   m_ObjectHideFlags: 0
@@ -16584,7 +16754,7 @@ Transform:
   m_GameObject: {fileID: 894539579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.5, z: 0}
+  m_LocalPosition: {x: 0, y: 5.74, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16598,8 +16768,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894539579}
   m_Enabled: 1
-  m_SortingLayerID: 733854493
-  m_SortingLayer: 4
+  m_SortingLayerID: 1596316177
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
@@ -17038,7 +17208,7 @@ Transform:
   m_GameObject: {fileID: 976089915}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.42, y: 2.3799992, z: 0}
+  m_LocalPosition: {x: 0.72, y: 2.3799992, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17074,7 +17244,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -19704,8 +19874,8 @@ Transform:
   m_GameObject: {fileID: 1087944665}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39, y: -3.1709726, z: 0}
-  m_LocalScale: {x: 1.4479324, y: 1.4479324, z: 1.4479324}
+  m_LocalPosition: {x: -0.39, y: -2.27, z: 0}
+  m_LocalScale: {x: 0.60326654, y: 0.60326654, z: 0.60326654}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1270856840}
@@ -21515,6 +21685,8 @@ MonoBehaviour:
   roomName: The Hallway
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!1 &1217601278
 GameObject:
   m_ObjectHideFlags: 0
@@ -24028,6 +24200,8 @@ MonoBehaviour:
   roomName: The Room
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!1 &1374199741
 GameObject:
   m_ObjectHideFlags: 0
@@ -27935,6 +28109,8 @@ MonoBehaviour:
   roomName: The Hallway
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!1 &1697305752
 GameObject:
   m_ObjectHideFlags: 0
@@ -28260,6 +28436,8 @@ MonoBehaviour:
   roomName: The Garden
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!1 &1709894841
 GameObject:
   m_ObjectHideFlags: 0
@@ -31063,6 +31241,8 @@ MonoBehaviour:
   roomName: The Room
   promptUI: {fileID: 0}
   promptText: {fileID: 0}
+  sfxSource: {fileID: 0}
+  teleportSFX: {fileID: 0}
 --- !u!1 &2001790822
 GameObject:
   m_ObjectHideFlags: 0
@@ -32509,7 +32689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   playerRb: {fileID: 2089573052}
-  speed: 30
+  speed: 5
   handSlot: {fileID: 894539580}
   invManager: {fileID: 1072119526}
   audioSource: {fileID: 1669078005}

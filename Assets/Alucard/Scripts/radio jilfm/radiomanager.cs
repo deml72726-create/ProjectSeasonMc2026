@@ -100,12 +100,12 @@ public class radiomanager : MonoBehaviour
             if (targetBandIndex == 0)
             {
                 float amValue = Mathf.Round(530f + (targetFrequency * 1070f));
-                wallClueText.text = "BAND: AM\nFREQ: " + amValue + " kHz";
+                wallClueText.text = amValue + " kHz AM";
             }
             else
             {
                 float fmValue = 88.0f + (targetFrequency * 20.0f);
-                wallClueText.text = "BAND: FM\nFREQ: " + fmValue.ToString("F1") + " MHz";
+                wallClueText.text = fmValue.ToString("F1") + " MHz FM";
             }
         }
     }
@@ -230,14 +230,12 @@ public class radiomanager : MonoBehaviour
             if (activeBandIndex == 0)
             {
                 float currentAM = Mathf.Round(530f + (currentFrequency * 1070f));
-                float targetAM = Mathf.Round(530f + (targetFrequency * 1070f));
-                debugText.text = "Current: " + currentAM + " kHz\nTarget: " + targetAM + " kHz\nBand: AM";
+                debugText.text = currentAM + " kHz AM";
             }
             else
             {
                 float currentFM = 88.0f + (currentFrequency * 20.0f);
-                float targetFM = 88.0f + (targetFrequency * 20.0f);
-                debugText.text = "Current: " + currentFM.ToString("F1") + " MHz\nTarget: " + targetFM.ToString("F1") + " MHz\nBand: FM";
+                debugText.text = currentFM.ToString("F1") + " MHz FM";
             }
         }
 
